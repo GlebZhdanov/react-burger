@@ -1,0 +1,28 @@
+.ingredients {
+  padding-top: 40px;
+  width: 600px;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Jet Brains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  color: #F2F2F3;
+}
+
+.scroll {
+  overflow: auto;
+  height: 60vh;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2F2F37;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}

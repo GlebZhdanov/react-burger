@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  list-style-type: none;
+  position: relative;
+}
+
+.image{
+  width: 240px;
+  height: 120px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style-type: none;
+}
+
+.subtitle {
+  font-family: 'Iceland';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 24px;
+  text-align: center;
+  color: #F2F2F3;
+  margin: 0;
+  padding-right: 9px;
+}
+
+.name {
+  font-family: 'Jet Brains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #F2F2F3;
+  margin: 0;
+}
+
+.count {
+  position: absolute;
+  top: 25px;
+  right: -15px;
+}
