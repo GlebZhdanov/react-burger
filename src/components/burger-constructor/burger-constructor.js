@@ -6,8 +6,9 @@ import {data} from "../../utils/constain";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 
 const BurgerConstructor = () => {
-  let dataBurger = data;
-  let priceDataBurger = data.map(i => i.price).reduce((sum, current) => sum + current, 0);
+  const dataBurger = data;
+  const priceDataBurger = data.map(i => i.price).reduce((sum, current) => sum + current, 0);
+
   return (
     <section className={`${styles.constructor} pt-25`}>
       <ConstructorList data={dataBurger}/>

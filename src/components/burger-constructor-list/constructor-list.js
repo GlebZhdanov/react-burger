@@ -6,6 +6,7 @@ import styles from "./constructor-list.module.css";
 import {ingredientPropType} from "../../utils/prop-types";
 
 const ConstructorList = ({ data }) => {
+
   return (
     <ul className={styles.container}>
       <li className='pl-6'>
@@ -18,7 +19,9 @@ const ConstructorList = ({ data }) => {
         />
       </li>
       <ul className={styles.scroll}>
-        {data.map((i) => (
+        {data
+        .filter(i => i.type !== 'bun')
+        .map((i) => (
           <ul className={styles.content} key={i._id}>
             <li>
               <DragIcon type='primary'/>
@@ -43,8 +46,6 @@ const ConstructorList = ({ data }) => {
     </ul>
   );
 };
-
-
 
 ConstructorList.propTypes = {
   data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,

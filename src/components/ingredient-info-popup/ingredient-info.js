@@ -1,13 +1,9 @@
 import React from 'react';
 import styles from './ingredient-info.module.css'
+import PropTypes from "prop-types";
+import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 
-const IngredientInfo = ({isPopupData, isClosePopup, clickPopupEsp, closePopupEsp}) => {
-  React.useEffect(() => {
-    closePopupEsp(isPopupData.open);
-    return (
-      document.removeEventListener('keydown', (e) => clickPopupEsp(e))
-    )
-  }, [isPopupData.open]);
+const IngredientInfo = ({isPopupData, isClosePopup,}) => {
 
   return (
     <div className={`${styles.popup} ${isPopupData.open ? styles.opened : ''}`}>
@@ -50,6 +46,11 @@ const IngredientInfo = ({isPopupData, isClosePopup, clickPopupEsp, closePopupEsp
       </ul>
     </div>
   );
+};
+
+IngredientInfo.propTypes = {
+  isPopupData: PropTypes.any.isRequired,
+  isClosePopup: PropTypes.any.isRequired
 };
 
 export default IngredientInfo;

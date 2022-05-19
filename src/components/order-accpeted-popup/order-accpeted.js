@@ -1,15 +1,8 @@
 import React from 'react';
 import styles from './order-accpeted.module.css'
+import PropTypes from "prop-types";
 
-const OrderAccpeted = ({isPopupOpen, isClosePopup, clickPopupEsp, closePopupEsp}) => {
-
-  React.useEffect(() => {
-    closePopupEsp(isPopupOpen);
-    return (
-      document.removeEventListener('keydown', (e) => clickPopupEsp(e))
-    )
-  }, [isPopupOpen]);
-
+const OrderAccpeted = ({isPopupOpen, isClosePopup}) => {
   return (
     <div className={`${styles.popup} ${isPopupOpen ? styles.opened : ''}`}>
       <ul className={styles.form}>
@@ -30,6 +23,11 @@ const OrderAccpeted = ({isPopupOpen, isClosePopup, clickPopupEsp, closePopupEsp}
       </ul>
     </div>
   );
+};
+
+OrderAccpeted.propTypes = {
+  isPopupOpen: PropTypes.bool.isRequired,
+  isClosePopup: PropTypes.any.isRequired
 };
 
 export default OrderAccpeted;

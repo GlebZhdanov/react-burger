@@ -24,18 +24,6 @@ const App = () => {
     setIsPopupOpenIngredientInfo({open: false, dataIngredient: {}})
   }
 
-  function clickPopupEsp(e) {
-    if(e.key === KEYCODE_ESC) {
-      popupClose()
-    }
-  }
-
-  function closePopupEsp(popup) {
-    if(popup === true) {
-      document.addEventListener('keydown', (e) => clickPopupEsp(e))
-    }
-  }
-
   return (
       <div className={styles.app}>
         <AppHeader/>
@@ -46,14 +34,10 @@ const App = () => {
           <BurgerConstructor/>
         </main>
         <OrderAccpeted
-          closePopupEsp={closePopupEsp}
-          clickPopupEsp={clickPopupEsp}
           isPopupOpen={isPopupOpenOrderAccpeted}
           isClosePopup={popupClose}
           setIsPopupOpen={setIsPopupOpenOrderAccpeted}/>
         <IngredientInfo
-          closePopupEsp={closePopupEsp}
-          clickPopupEsp={clickPopupEsp}
           isPopupData={isPopupOpenIngredientInfo}
           isClosePopup={popupClose}
           setIsPopupOpen={setIsPopupOpenIngredientInfo}
