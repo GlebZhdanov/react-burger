@@ -1,0 +1,31 @@
+.constructor {
+  max-width: 582px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.count {
+  margin: 0;
+  font-family: 'Iceland';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 36px;
+  color: #F2F2F3;
+}
+
+.image {
+  margin-left: 10px;
+  width: 33px;
+  height: 33px;
+}

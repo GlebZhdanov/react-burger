@@ -1,0 +1,35 @@
+.content {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+}
+
+.scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  overflow: auto;
+  height: 50vh;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2F2F37;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}

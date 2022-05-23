@@ -1,0 +1,6 @@
+/node_modules
+/build
+/public
+/.idea
+/.DS_Store
+globals.d.ts
