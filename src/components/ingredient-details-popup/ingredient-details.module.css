@@ -1,12 +1,3 @@
-.popup {
-  composes: popup from '../order-accpeted-popup/order-accpeted.module.css'
-}
-
-.opened {
-  visibility: visible;
-  opacity: 1;
-}
-
 .form {
   height: 539px;
   width: 720px;

@@ -33,7 +33,7 @@ const Ingredients = ({item, popupOpenIngredient}) => {
 
 Ingredients.propTypes = {
   item: ingredientPropType.isRequired,
-  popupOpenIngredient: PropTypes.any.isRequired
+  popupOpenIngredient: PropTypes.func.isRequired
 };
 
 export default Ingredients;

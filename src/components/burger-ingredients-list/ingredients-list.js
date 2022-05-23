@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import {ingredientPropType} from "../../utils/prop-types";
 
 const IngredientsList = ({ data, title, popupOpenIngredient }) => {
+
   return (
     <>
     <h2 className={styles.title}>{title}</h2>
@@ -22,7 +23,8 @@ const IngredientsList = ({ data, title, popupOpenIngredient }) => {
 
 IngredientsList.propTypes = {
   data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  popupOpenIngredient: PropTypes.func.isRequired
 };
 
 export default IngredientsList;
