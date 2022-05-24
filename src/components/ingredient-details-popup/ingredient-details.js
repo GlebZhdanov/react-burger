@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ingredient-details.module.css'
 import PropTypes from "prop-types";
 
-const IngredientDetails = ({isPopupData, isClosePopup}) => {
+const IngredientDetails = ({isPopupData, popupClose}) => {
 
   return (
       <ul className={styles.form}>
@@ -40,7 +40,7 @@ const IngredientDetails = ({isPopupData, isClosePopup}) => {
           </ul>
         </ul>
         <button type="button" className={styles.close}
-                onClick={isClosePopup}
+                onClick={popupClose}
         />
       </ul>
   );
@@ -48,7 +48,7 @@ const IngredientDetails = ({isPopupData, isClosePopup}) => {
 
 IngredientDetails.propTypes = {
   isPopupData: PropTypes.object.isRequired,
-  isClosePopup: PropTypes.func.isRequired
+  popupClose: PropTypes.func.isRequired
 };
 
 export default IngredientDetails;

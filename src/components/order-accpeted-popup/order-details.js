@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './order-accpeted.module.css'
 import PropTypes from "prop-types";
 
-const OrderDetails = ({isClosePopup}) => {
+const OrderDetails = ({popupClose}) => {
   return (
       <ul className={styles.form}>
         <li className={`${styles.text} pt-30`}>
@@ -19,13 +19,13 @@ const OrderDetails = ({isClosePopup}) => {
           Дождитесь готовности на орбитальной станции
         </li>
         <button type="button" className={styles.close}
-                onClick={isClosePopup}/>
+                onClick={popupClose}/>
       </ul>
   );
 };
 
 OrderDetails.propTypes = {
-  isClosePopup: PropTypes.func.isRequired,
+  popupClose: PropTypes.func.isRequired,
 };
 
 export default OrderDetails;

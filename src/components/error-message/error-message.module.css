@@ -1,0 +1,21 @@
+.error {
+  position:absolute;
+  top: 30%;
+  left: 50%;
+  margin-left: -400px;
+  margin-top: -50px;
+  display: none;
+}
+.text{
+  font-size: 30px;
+  font-family: 'Jet Brains Mono';
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  color: #F2F2F3;
+  text-align: center;
+}
+
+.opened {
+  display: block;
+}
