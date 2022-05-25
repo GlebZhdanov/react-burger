@@ -1,22 +1,18 @@
 import React from 'react';
-import styles from './ingredient-info.module.css'
+import styles from './ingredient-details.module.css'
 import PropTypes from "prop-types";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 
-const IngredientInfo = ({isPopupData, isClosePopup,}) => {
+const IngredientDetails = ({isPopupData, popupClose}) => {
 
   return (
-    <div className={`${styles.popup} ${isPopupData.open ? styles.opened : ''}`}>
       <ul className={styles.form}>
         <li className={`${styles.title} ml-10 mt-10`}>
           Детали ингредиента
         </li>
-        <li/>
         <img className={styles.image} src={isPopupData.dataIngredient.image}/>
         <li className={`${styles.text} pt-5`}>
           {isPopupData.dataIngredient.name}
         </li>
-        <button type="button" className={styles.close} onClick={isClosePopup} />
         <ul className={`${styles.content} mt-9`}>
           <ul className={styles.container}>
             <li className={styles.text_container}>Калории,ккал</li>
@@ -43,14 +39,16 @@ const IngredientInfo = ({isPopupData, isClosePopup,}) => {
             </li>
           </ul>
         </ul>
+        <button type="button" className={styles.close}
+                onClick={popupClose}
+        />
       </ul>
-    </div>
   );
 };
 
-IngredientInfo.propTypes = {
-  isPopupData: PropTypes.any.isRequired,
-  isClosePopup: PropTypes.any.isRequired
+IngredientDetails.propTypes = {
+  isPopupData: PropTypes.object.isRequired,
+  popupClose: PropTypes.func.isRequired
 };
 
-export default IngredientInfo;
+export default IngredientDetails;
