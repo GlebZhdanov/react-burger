@@ -31,7 +31,7 @@
 
 ##### `npm run build` – production сборка проекта
 
-### Ссылка на проект: [React-burger](https://glebzhfilms.nomoredomains.xyz)
+### Ссылка на проект: [React-burger](https://glebzhdanov.github.io/react-burger/)
 
 
 
