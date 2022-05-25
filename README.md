@@ -1,36 +1,68 @@
-# Getting Started with Create React AppHeader
+# React-burger
 
-This project was bootstrapped with [Create React AppHeader](https://github.com/facebook/create-react-app).
+## Описание проекта
 
-## Available Scripts
+Сервис для поиска фильмов и сохранение их в личном кабинете
 
-In the project directory, you can run:
+## Функционал
 
-### `npm start`
+- Проект адаптирован под различные разрешения экрана.
+- Отзывчивая верстка.
+- Реализованна валидация форм с помощью библиотеки Formik.
+- Есть возможность поиска по сохраненным фильмам.
+- Все данные записываются в localStorage, а при монтирование компонента App достаются оттуда.
+- Обработаны ошибки API посредством всплывающего попапа с текстом ошибки.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+##  Стек
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- HTML, CSS
+- TypeScript
+- React
+- Redux
+- Jest
 
-### `npm test`
+##  Установка зависимостей
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### `npm i` – установить зависимости проекта
 
-### `npm run build`
+##### `npm run start` – запуск devServer на http://localhost:3000/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### `npm run build` – production сборка проекта
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Статус проекта
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Проект завершён.
 
-## Learn More
+# Проект Movies-explorer
 
-You can learn more in the [Create React AppHeader documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Описание проекта
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Сервис для поиска фильмов и сохранение их в личном кабинете
+
+## Функционал
+
+- Проект адаптирован под различные разрешения экрана.
+- Отзывчивая верстка.
+- Реализованна валидация форм с помощью библиотеки Formik.
+- Есть возможность поиска по сохраненным фильмам.
+- Все данные записываются в localStorage, а при монтирование компонента App достаются оттуда.
+- Обработаны ошибки API посредством всплывающего попапа с текстом ошибки.
+
+##  Стек
+
+- HTML, CSS
+- Javascript
+- React
+
+## Установка зависимостей
+
+##### `npm install` – установить зависимости проекта
+
+##### `npm run start` – запуск devServer на http://localhost:3000/
+
+##### `npm run build` – production сборка проекта
+
+
+### Ссылка на проект: [React-burger](https://glebzhdanov.github.io/react-burger/)
+
+
