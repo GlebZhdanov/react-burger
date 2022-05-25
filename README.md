@@ -1,36 +1,37 @@
-# Getting Started with Create React AppHeader
+# React-burger
 
-This project was bootstrapped with [Create React AppHeader](https://github.com/facebook/create-react-app).
+## Описание проекта
+Сервис для создания и заказа бургеров
 
-## Available Scripts
+##  Стек
+- HTML, CSS
+- TypeScript
+- React
+- Redux
+- Jest
 
-In the project directory, you can run:
+## Функционал
+- Возможность регистрации и авторизации пользователей
+- Отзывчивая верстка.
+- Обработаны ошибки API посредством всплывающего попапа с текстом ошибки.
 
-### `npm start`
+## Планы на доработку
+- Внедрить в проект способ управления состоянием приложения - Redux.
+- Настроить тестирование с помощью фрейворка Jest.
+- Переписать весь проект на TypeScript.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Статус проекта
+Проект на этапе верстки
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+##  Установка зависимостей
 
-### `npm test`
+##### `npm i` – установить зависимости проекта
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### `npm run start` – запуск devServer на http://localhost:3000/
 
-### `npm run build`
+##### `npm run build` – production сборка проекта
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Ссылка на проект: [React-burger](https://glebzhdanov.github.io/react-burger/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Learn More
-
-You can learn more in the [Create React AppHeader documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
