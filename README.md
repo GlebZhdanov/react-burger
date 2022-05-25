@@ -62,7 +62,8 @@
 
 ##### `npm run build` – production сборка проекта
 
+### Ссылка на проект: <https://glebzhfilms.nomoredomains.xyz" target="_blank">New Tab</a>
 
-### Ссылка на проект: [React-burger](https://glebzhdanov.github.io/react-burger/)
+### Ссылка на проект: [Movies-explorer](https://glebzhfilms.nomoredomains.xyz)
 
 
