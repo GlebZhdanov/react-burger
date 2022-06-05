@@ -13,6 +13,12 @@
   align-items: center;
 }
 
+.form_error {
+  composes: form;
+  background-color: #AF2B1E;
+  justify-content: center;
+}
+
 .title {
   font-family: 'Jet Brains Mono';
   font-style: normal;
@@ -21,6 +27,11 @@
   line-height: 30px;
   text-align: center;
   color: #F2F2F3;
+}
+
+.title_error {
+  composes: title;
+  font-size: 30px;
 }
 
 .text {
