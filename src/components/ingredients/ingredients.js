@@ -3,7 +3,7 @@ import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-c
 import styles from './ingredients.module.css'
 import {ingredientPropType} from "../../utils/prop-types";
 import PropTypes from "prop-types";
-import {ContextApp} from "../../context/reducer";
+import {ContextApp} from "../../context/ContextApp";
 
 const Ingredients = ({item, popupOpenIngredient}) => {
   const {setReducer, setIsDataBun} = useContext(ContextApp);

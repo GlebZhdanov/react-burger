@@ -1,7 +1,7 @@
 import React,{useContext} from 'react';
 import styles from './order-accpeted.module.css'
 import PropTypes from "prop-types";
-import {ContextApp} from "../../context/reducer";
+import {ContextApp} from "../../context/ContextApp";
 
 const OrderDetails = ({popupClose, isLoadingFalseOrder}) => {
 

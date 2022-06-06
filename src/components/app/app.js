@@ -6,13 +6,13 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 import Preloader from "../preloader/preloader";
 import {api} from "../../utils/api";
 import ErrorMessage from "../error-message/error-message";
-import {ContextApp} from "../../context/reducer";
+import {ContextApp} from "../../context/ContextApp";
 import PlugIngredients from "../plug-ingredients/plug-ingridients";
 
 const App = () => {
   const [isPopupOpenOrderAccpeted, setIsPopupOpenOrderAccpeted] = useState(false);
   const [isPopupOpenIngredientInfo, setIsPopupOpenIngredientInfo] = useState({open: false, dataIngredient: {}});
-  const [isDataBun, setIsDataBun] = useState({});
+  const [isDataBun, setIsDataBun] = useState(null);
   const [dataBurger, setDataBurger] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingFalse, setIsLoadingFalse] = useState(false);
@@ -44,6 +44,8 @@ const App = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  console.log(state.bun)
+
   function setReducer() {
     dispatch({
       type: 'add_ingredient',
@@ -54,7 +56,7 @@ const App = () => {
     const getData = async () => {
       try {
         const dataBurger = await api.getIngredients();
-          let {data} = dataBurger;
+          const {data} = dataBurger;
           setDataBurger(data);
           setIsLoading(false);
       } catch (err) {
@@ -70,7 +72,7 @@ const App = () => {
     }
     try {
       const dataOrder = await api.postOrder(dataOrderId);
-      let {success, order} = dataOrder;
+      const {success, order} = dataOrder;
       if(success === true) {
         setOrderNumber(order);
         dispatch({

@@ -6,19 +6,21 @@ import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-accpeted-popup/order-details";
 import PropTypes from "prop-types";
-import {ContextApp} from "../../context/reducer";
+import {ContextApp} from "../../context/ContextApp";
 
 const BurgerConstructor = ({setIsPopupOpen, isPopupOpen, popupClose, isLoadingFalseOrder}) => {
 
-  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0);
   const {state, postOrder} = useContext(ContextApp)
 
   useEffect(() => {
+    const priceDataBurger = state.ingredient.map(i => i.price).reduce((sum, current) => sum + current, 0);
+
     if(state.bun) {
       const priceBun = state.bun.price * 2;
-      const priceDataBurger = state.ingredient.map(i => i.price).reduce((sum, current) => sum + current, 0);
-
-      setTotalPrice(priceBun + priceDataBurger)
+      setTotalPrice(priceDataBurger + priceBun);
+    } else if(state.ingredient) {
+      setTotalPrice(priceDataBurger)
     }
   },[state])
 

@@ -1,7 +1,7 @@
 import React,{useContext} from 'react';
 import {ConstructorElement , DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./constructor-list.module.css";
-import {ContextApp} from "../../context/reducer";
+import {ContextApp} from "../../context/ContextApp";
 import PlugIngredients from "../plug-ingredients/plug-ingridients";
 
 const ConstructorList = () => {
@@ -26,8 +26,8 @@ const ConstructorList = () => {
       <ul className={styles.scroll}>
         {state.ingredient
         .filter(i => i.type !== 'bun')
-        .map((i) => (
-          <ul className={styles.content} key={i._id}>
+        .map((i, index) => (
+          <ul className={styles.content} key={index}>
             <li>
               <DragIcon type='primary'/>
             </li>

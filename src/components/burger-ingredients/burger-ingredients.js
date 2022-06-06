@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect} from 'react';
+import React,{useMemo,useEffect,useRef,useImperativeHandle} from 'react';
 import styles from './burger-ingredients.module.css'
 import IngredientsList from "../burger-ingredients-list/ingredients-list";
 import {useInView} from 'react-intersection-observer';
@@ -10,7 +10,7 @@ import {ingredientPropType} from "../../utils/prop-types";
 
 const BurgerIngredients = ({isPopupData, dataBurger, popupOpenIngredient, popupClose}) => {
 
-  let {open} = isPopupData
+  const {open} = isPopupData
 
   const  { ref: refBun, inView: inViewBun}  =  useInView( {
       threshold: 0,
@@ -46,6 +46,7 @@ const BurgerIngredients = ({isPopupData, dataBurger, popupOpenIngredient, popupC
     return dataBurger.filter(item => item.type == 'sauce');
   },[dataBurger])
 
+
   return (
       <section className={styles.ingredients}>
         <h1 className={styles.title}>Соберите бургер</h1>
@@ -56,7 +57,7 @@ const BurgerIngredients = ({isPopupData, dataBurger, popupOpenIngredient, popupC
           <Tab value="two" active={current === 'two'}>
             Соусы
           </Tab>
-          <Tab value="three" active={current === 'three'}>
+          <Tab value="three" active={current === 'three'} >
             Начинки
           </Tab>
         </div>
