@@ -44,8 +44,6 @@ const App = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  console.log(state.bun)
-
   function setReducer() {
     dispatch({
       type: 'add_ingredient',
