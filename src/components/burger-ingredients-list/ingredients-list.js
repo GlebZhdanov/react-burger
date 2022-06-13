@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from 'react'
+import React from 'react'
 import Ingredients from "../ingredients/ingredients";
 import styles from './ingredients-list.module.css'
 import PropTypes from "prop-types";

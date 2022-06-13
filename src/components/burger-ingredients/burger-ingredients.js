@@ -1,6 +1,7 @@
-import React, {createRef, useRef, useMemo} from 'react';
+import React,{useMemo,useEffect,useRef,useImperativeHandle} from 'react';
 import styles from './burger-ingredients.module.css'
 import IngredientsList from "../burger-ingredients-list/ingredients-list";
+import {useInView} from 'react-intersection-observer';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from "prop-types";
 import Modal from "../modal/modal";
@@ -9,7 +10,28 @@ import {ingredientPropType} from "../../utils/prop-types";
 
 const BurgerIngredients = ({isPopupData, dataBurger, popupOpenIngredient, popupClose}) => {
 
-  let {open} = isPopupData
+  const {open} = isPopupData
+
+  const  { ref: refBun, inView: inViewBun}  =  useInView( {
+      threshold: 0,
+    }) ;
+  const  { ref: refSauce, inView: inViewSauce }  =  useInView( {
+    threshold: 1,
+  }) ;
+  const  { ref: refMain, inView: inViewMain }  =  useInView( {
+    threshold: 1,
+  }) ;
+
+  useEffect(() => {
+    if(inViewBun === true) {
+      setCurrent('one')
+    } else if(inViewSauce === true) {
+      setCurrent('two')
+    } else if(inViewMain === true) {
+      setCurrent('three')
+    }
+  },[inViewBun, inViewMain, inViewSauce])
+
   const [current, setCurrent] = React.useState('one');
 
   const filterDataMain = useMemo(() => {
@@ -24,43 +46,25 @@ const BurgerIngredients = ({isPopupData, dataBurger, popupOpenIngredient, popupC
     return dataBurger.filter(item => item.type == 'sauce');
   },[dataBurger])
 
-  const bunRef = useRef();
-  const mainRef = useRef();
-  const sauceRef = useRef();
-
-  function mouseClickBun (value) {
-    setCurrent(value);
-    bunRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function mouseClickSauce (value) {
-    setCurrent(value);
-    sauceRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function mouseClickMain (value) {
-    setCurrent(value);
-    mainRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
 
   return (
       <section className={styles.ingredients}>
         <h1 className={styles.title}>Соберите бургер</h1>
         <div className={`${styles.tab} pt-5 pb-10`}>
-          <Tab value="one" active={current === 'one'} onClick={mouseClickBun}>
+          <Tab value="one" active={current === 'one'}>
             Булки
           </Tab>
-          <Tab value="two" active={current === 'two'} onClick={mouseClickSauce}>
+          <Tab value="two" active={current === 'two'}>
             Соусы
           </Tab>
-          <Tab value="three" active={current === 'three'} onClick={mouseClickMain}>
+          <Tab value="three" active={current === 'three'} >
             Начинки
           </Tab>
         </div>
         <div className={styles.scroll}>
-          <IngredientsList ref={bunRef} popupOpenIngredient={popupOpenIngredient} data={filterDataBun} title={'Булки'}/>
-          <IngredientsList ref={mainRef} popupOpenIngredient={popupOpenIngredient} data={filterDataMain} title={'Начинки'}/>
-          <IngredientsList ref={sauceRef} popupOpenIngredient={popupOpenIngredient} data={filterDataSauce} title={'Соусы'}/>
+          <IngredientsList ref={refBun} popupOpenIngredient={popupOpenIngredient} data={filterDataBun} title={'Булки'}/>
+          <IngredientsList ref={refSauce} popupOpenIngredient={popupOpenIngredient} data={filterDataSauce} title={'Соусы'}/>
+          <IngredientsList ref={refMain} popupOpenIngredient={popupOpenIngredient} data={filterDataMain} title={'Начинки'}/>
         </div>
         <Modal isPopupOpen={open} popupClose={popupClose}>
           <IngredientDetails popupClose={popupClose} isPopupData={isPopupData}/>

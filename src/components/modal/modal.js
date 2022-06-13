@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import ReactDOM from "react-dom";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import styles from './modal.module.css'
@@ -9,24 +9,19 @@ const Modal = ({isPopupOpen,popupClose, children }) => {
 
   const reactModal = document.getElementById('react-modals');
 
-  function clickPopupEsp(e) {
-    if(e.key === KEYCODE_ESC) {
-      popupClose()
+  useEffect(() => {
+    function closeByEscape(evt) {
+      if(evt.key === KEYCODE_ESC) {
+        popupClose();
+      }
     }
-  }
-
-  function closePopupEsp(popup) {
-    if(popup === true) {
-      document.addEventListener('keydown', (e) => clickPopupEsp(e))
+    if(isPopupOpen) {
+      document.addEventListener('keydown', closeByEscape);
+      return () => {
+        document.removeEventListener('keydown', closeByEscape);
+      }
     }
-  }
-
-  React.useEffect(() => {
-    closePopupEsp(isPopupOpen);
-    return (
-      document.removeEventListener('keydown', (e) => clickPopupEsp(e))
-    )
-  }, [isPopupOpen]);
+  }, [isPopupOpen])
 
   return ReactDOM.createPortal (
     <div onClick={popupClose} className={`${styles.popup} ${isPopupOpen ? styles.opened : ''}`}>

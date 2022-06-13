@@ -1,28 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React,{useContext} from 'react';
 import {ConstructorElement , DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import image from '../../images/bun.svg'
 import styles from "./constructor-list.module.css";
-import {ingredientPropType} from "../../utils/prop-types";
+import {ContextApp} from "../../context/ContextApp";
+import PlugIngredients from "../plug-ingredients/plug-ingridients";
 
-const ConstructorList = ({ data }) => {
+const ConstructorList = () => {
+
+  const {state} = useContext(ContextApp);
 
   return (
     <ul className={styles.container}>
       <li className='pl-6'>
-        <ConstructorElement
+        {state.bun
+          ?
+          <ConstructorElement
             type="top"
             isLocked={true}
-            text="Краторная булка N-200i (верх)"
-            price={200}
-            thumbnail={image}
-        />
+            text={`${state.bun.name} (верх)`}
+            price={state.bun.price}
+            thumbnail={state.bun.image}
+          />
+          :
+          <PlugIngredients typeTop={true}/>}
       </li>
       <ul className={styles.scroll}>
-        {data
+        {state.ingredient
         .filter(i => i.type !== 'bun')
-        .map((i) => (
-          <ul className={styles.content} key={i._id}>
+        .map((i, index) => (
+          <ul className={styles.content} key={index}>
             <li>
               <DragIcon type='primary'/>
             </li>
@@ -35,20 +40,21 @@ const ConstructorList = ({ data }) => {
         ))}
       </ul>
       <li className='pl-6'>
-        <ConstructorElement
-          type="bottom"
-          isLocked={true}
-          text="Краторная булка N-200i (низ)"
-          price={200}
-          thumbnail={image}
-        />
+        {state.bun
+          ?
+          <ConstructorElement
+            type="bottom"
+            isLocked={true}
+            text={`${state.bun.name} (низ)`}
+            price={state.bun.price}
+            thumbnail={state.bun.image}
+          />
+          :
+          <PlugIngredients typeTop={false}/>}
       </li>
     </ul>
   );
 };
 
-ConstructorList.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-};
 
 export default ConstructorList;
