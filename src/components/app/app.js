@@ -4,128 +4,53 @@ import styles from './app.module.css'
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import Preloader from "../preloader/preloader";
-import {api} from "../../utils/api";
 import ErrorMessage from "../error-message/error-message";
-import {ContextApp} from "../../context/ContextApp";
-import PlugIngredients from "../plug-ingredients/plug-ingridients";
+import {loadIngredients} from "../../redux/ingredients/actions";
+import {useDispatch,useSelector} from "react-redux";
+import {burger} from "../../redux/ingredients/selectors";
+import {deleteOrder} from "../../redux/order/actions";
 
 const App = () => {
-  const [isPopupOpenOrderAccpeted, setIsPopupOpenOrderAccpeted] = useState(false);
-  const [isPopupOpenIngredientInfo, setIsPopupOpenIngredientInfo] = useState({open: false, dataIngredient: {}});
-  const [isDataBun, setIsDataBun] = useState(null);
-  const [dataBurger, setDataBurger] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingFalse, setIsLoadingFalse] = useState(false);
-  const [isLoadingFalseOrder, setIsLoadingFalseOrder] = useState(false);
-  const [orderNumber, setOrderNumber] = useState({});
+  const [openPopupOrder, setOpenPopupOrder] = useState(false);
+  const [openPopupIngredient, setOpenPopupIngredient] = useState(false);
 
-  //Временное решение на добавление заказа при клике на ингредиент
-  const initialState = {
-    ingredient: [],
-    bun: null
-  };
-
-  const reducer = (state, action) => {
-    switch(action.type) {
-      case 'add_ingredient':
-        return {
-          ingredient: [ ...state.ingredient, isPopupOpenIngredientInfo.dataIngredient].filter(item => item.type !== 'bun'),
-          bun: isDataBun
-        };
-      case 'reset_ingredient':
-        return {
-          ingredient: [],
-          bun: null
-        };
-      default:
-        return state
-    }
-  };
-
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  function setReducer() {
-    dispatch({
-      type: 'add_ingredient',
-    })
-  }
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const dataBurger = await api.getIngredients();
-          const {data} = dataBurger;
-          setDataBurger(data);
-          setIsLoading(false);
-      } catch (err) {
-        setIsLoadingFalse(true);
-      }
-    }
-    getData();
+    dispatch(loadIngredients())
   },[])
 
-  const postOrder = async () => {
-    const dataOrderId ={
-      "ingredients": dataBurger.map(i => i._id)
-    }
-    try {
-      const dataOrder = await api.postOrder(dataOrderId);
-      const {success, order} = dataOrder;
-      if(success === true) {
-        setOrderNumber(order);
-        dispatch({
-          type: 'reset_ingredient',
-        })
-      }
-    } catch (err) {
-      setIsLoadingFalseOrder(true)
-    }
-  }
-
-  const popupOpenOrder = () => {
-    setIsPopupOpenOrderAccpeted(true);
-  }
+  const {dataLoading} = useSelector(burger);
 
   const popupOpenIngredient = (data) => {
-    setIsPopupOpenIngredientInfo({open: true, dataIngredient: data});
+    setOpenPopupIngredient(true);
   }
-
 
   const popupClose = () => {
-    setIsPopupOpenOrderAccpeted(false);
-    setIsPopupOpenIngredientInfo({open: false, dataIngredient: {}});
-    setOrderNumber({})
+    setOpenPopupIngredient(false)
+    setOpenPopupOrder(false)
+    dispatch(deleteOrder())
   }
-
   return (
       <div className={styles.app}>
-        <ContextApp.Provider value={{state, setReducer, setIsDataBun, postOrder,                 orderNumber}}>
-          <ErrorMessage isLoadingFalse={isLoadingFalse}/>
-          <AppHeader/>
-          {isLoading ?
-            <>
-              <Preloader/>
-            </>
-            :
+        <ErrorMessage/>
+        <AppHeader/>
+          {dataLoading ?
             <main className={styles.main}>
               <BurgerIngredients
-                isPopupData={isPopupOpenIngredientInfo}
-                dataBurger={dataBurger}
-                popupOpenIngredient={popupOpenIngredient}
-                popupClose={popupClose}
-                setIsPopupOpen={setIsPopupOpenIngredientInfo}
-              />
+                openPopupIngredient={openPopupIngredient}
+                setOpenPopupIngredient={popupOpenIngredient}
+                popupClose={popupClose}/>
               <BurgerConstructor
-                postOrder={postOrder}
-                setIsPopupOpen={popupOpenOrder}
-                dataBurger={dataBurger}
-                isPopupOpen={isPopupOpenOrderAccpeted}
-                popupClose={popupClose}
-                isLoadingFalseOrder={isLoadingFalseOrder}
-              />
+                openPopupOrder={openPopupOrder}
+                setOpenPopupOrder={setOpenPopupOrder}
+                popupClose={popupClose}/>
             </main>
+            :
+            <>
+             <Preloader/>
+            </>
           }
-        </ContextApp.Provider>
       </div>
   );
 }

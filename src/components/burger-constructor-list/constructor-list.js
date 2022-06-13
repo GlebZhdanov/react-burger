@@ -4,27 +4,25 @@ import styles from "./constructor-list.module.css";
 import {ContextApp} from "../../context/ContextApp";
 import PlugIngredients from "../plug-ingredients/plug-ingridients";
 
-const ConstructorList = () => {
-
-  const {state} = useContext(ContextApp);
+const ConstructorList = ({bun, ingredient}) => {
 
   return (
     <ul className={styles.container}>
       <li className='pl-6'>
-        {state.bun
+        {bun
           ?
           <ConstructorElement
             type="top"
             isLocked={true}
-            text={`${state.bun.name} (верх)`}
-            price={state.bun.price}
-            thumbnail={state.bun.image}
+            text={`${bun.name} (верх)`}
+            price={bun.price}
+            thumbnail={bun.image}
           />
           :
           <PlugIngredients typeTop={true}/>}
       </li>
       <ul className={styles.scroll}>
-        {state.ingredient
+        {ingredient
         .filter(i => i.type !== 'bun')
         .map((i, index) => (
           <ul className={styles.content} key={index}>
@@ -40,14 +38,14 @@ const ConstructorList = () => {
         ))}
       </ul>
       <li className='pl-6'>
-        {state.bun
+        {bun
           ?
           <ConstructorElement
             type="bottom"
             isLocked={true}
-            text={`${state.bun.name} (низ)`}
-            price={state.bun.price}
-            thumbnail={state.bun.image}
+            text={`${bun.name} (низ)`}
+            price={bun.price}
+            thumbnail={bun.image}
           />
           :
           <PlugIngredients typeTop={false}/>}

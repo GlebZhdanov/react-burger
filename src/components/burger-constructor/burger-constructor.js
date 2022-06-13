@@ -6,32 +6,42 @@ import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-accpeted-popup/order-details";
 import PropTypes from "prop-types";
-import {ContextApp} from "../../context/ContextApp";
+import {useDispatch,useSelector} from "react-redux";
+import {loadOrder} from "../../redux/order/actions";
+import {ingredientDetails} from "../../redux/ingredient-details/selectors";
 
-const BurgerConstructor = ({setIsPopupOpen, isPopupOpen, popupClose, isLoadingFalseOrder}) => {
+const BurgerConstructor = ({openPopupOrder, popupClose, setOpenPopupOrder}) => {
 
   const [totalPrice, setTotalPrice] = useState(0);
-  const {state, postOrder} = useContext(ContextApp)
+  // const ingredient = useSelector(store => store.ingredients);
+  const {ingredient, bun} = useSelector(ingredientDetails);
 
   useEffect(() => {
-    const priceDataBurger = state.ingredient.map(i => i.price).reduce((sum, current) => sum + current, 0);
+    const priceDataBurger = ingredient.map(i => i.price).reduce((sum, current) => sum + current, 0);
 
-    if(state.bun) {
-      const priceBun = state.bun.price * 2;
+    if(bun) {
+      const priceBun = bun.price * 2;
       setTotalPrice(priceDataBurger + priceBun);
-    } else if(state.ingredient) {
+    } else if(ingredient) {
       setTotalPrice(priceDataBurger)
     }
-  },[state])
+  },[ingredient, bun])
+
+  // Заглушка для списка заказа
+  const dataOrderId ={
+    "ingredients": '60d3b41abdacab0026a733c6'
+        // dataBurger.map(i => i._id)
+  }
+  const dispatch = useDispatch();
 
   const clickButtonPlaceOrder = () => {
-    setIsPopupOpen();
-    postOrder();
+    dispatch(loadOrder(dataOrderId));
+    setOpenPopupOrder(true)
   }
 
   return (
     <section className={`${styles.constructor} pt-25`}>
-      <ConstructorList />
+      <ConstructorList bun={bun} ingredient={ingredient}/>
       <div className={`${styles.container} pt-10`}>
         <div className={`${styles.content} pr-10`}>
           <p className={styles.count}>{totalPrice}</p>
@@ -42,18 +52,17 @@ const BurgerConstructor = ({setIsPopupOpen, isPopupOpen, popupClose, isLoadingFa
           Оформить заказ
         </Button>
       </div>
-      <Modal isPopupOpen={isPopupOpen} popupClose={popupClose}>
-        <OrderDetails isLoadingFalseOrder={isLoadingFalseOrder} popupClose={popupClose}/>
+      <Modal isOpenPopup={openPopupOrder} popupClose={popupClose}>
+        <OrderDetails popupClose={popupClose}/>
       </Modal>
     </section>
   );
 };
 
 BurgerConstructor.propTypes = {
-  setIsPopupOpen:PropTypes.func.isRequired,
-  isPopupOpen:PropTypes.bool.isRequired,
+  openPopupOrder:PropTypes.bool.isRequired,
   popupClose:PropTypes.func.isRequired,
-  isLoadingFalseOrder: PropTypes.bool.isRequired,
+  setOpenPopupOrder: PropTypes.func.isRequired
 };
 
 export default BurgerConstructor;

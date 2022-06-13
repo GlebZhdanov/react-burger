@@ -1,21 +1,39 @@
-import React,{useContext} from 'react';
+import React,{useContext,useMemo} from 'react';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredients.module.css'
 import {ingredientPropType} from "../../utils/prop-types";
 import PropTypes from "prop-types";
-import {ContextApp} from "../../context/ContextApp";
+import {useDispatch,useSelector} from "react-redux";
+import {addBun,addIngredient,addIngredientInfo} from "../../redux/ingredient-details/actions";
+import {ingredientDetails} from "../../redux/ingredient-details/selectors";
+// import {useDrag} from "react-dnd";
 
-const Ingredients = ({item, popupOpenIngredient}) => {
-  const {setReducer, setIsDataBun} = useContext(ContextApp);
+const Ingredients = ({item, setOpenPopupIngredient}) => {
+
+    // const {id, content} = item;
+    // const [] = useDrag({});
+
+
+  const {ingredient, bun} = useSelector(ingredientDetails);
+
+  const ingredientCounter = useMemo(() => {
+    let counter = 0;
+    ingredient.forEach((ingredient) => {
+      if (ingredient._id === item._id) counter++;
+    });
+    return counter;
+  }, [ingredient]);
+
+  const dispatch = useDispatch()
 
   function clickIngredients() {
     if(item.type === 'bun') {
-      setIsDataBun(item)
+      dispatch(addBun(item))
     }
-    popupOpenIngredient(item)
-    setReducer()
+    dispatch(addIngredientInfo(item))
+    dispatch(addIngredient(item))
+    setOpenPopupIngredient()
   }
-
   return (
       <ul className={`${styles.container} pl-4 pt-6 pb-6`}>
         <li>
@@ -31,7 +49,12 @@ const Ingredients = ({item, popupOpenIngredient}) => {
         </ul>
         <li className={styles.name}>{item.name}</li>
         <li className={styles.count}>
-          <Counter count={1} size="default" />
+          {item.type === 'bun'
+            ?
+            ''
+            :
+            <Counter count={ingredientCounter} size="default" />
+          }
         </li>
       </ul>
   );
