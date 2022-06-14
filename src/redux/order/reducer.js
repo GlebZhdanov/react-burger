@@ -2,7 +2,7 @@ import {
   ORDER_DATA_DELETE,
   ORDER_DATA_ERROR,
   ORDER_DATA_REQUEST,
-  ORDER_DATA_SUCCESS,ORDER_POPUP_OPEN
+  ORDER_DATA_SUCCESS,
 } from "./actions";
 
 const initialState = {

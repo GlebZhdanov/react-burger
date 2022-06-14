@@ -4,8 +4,6 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 import styles from './modal.module.css'
 import {KEYCODE_ESC} from "../../utils/constain";
 import PropTypes from "prop-types";
-import {useSelector} from "react-redux";
-import {order} from "../../redux/order/selectors";
 
 const Modal = ({isOpenPopup, popupClose, children }) => {
   const reactModal = document.getElementById('react-modals');
@@ -36,7 +34,7 @@ const Modal = ({isOpenPopup, popupClose, children }) => {
 };
 
 Modal.propTypes = {
-  // isOpenPopup: PropTypes.bool.isRequired,
+  isOpenPopup: PropTypes.bool.isRequired,
   popupClose: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired
 };

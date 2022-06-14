@@ -1,4 +1,4 @@
-import React,{useMemo,useEffect,useRef,useImperativeHandle} from 'react';
+import React,{useMemo,useEffect} from 'react';
 import styles from './burger-ingredients.module.css'
 import IngredientsList from "../burger-ingredients-list/ingredients-list";
 import {useInView} from 'react-intersection-observer';
@@ -6,7 +6,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details-popup/ingredient-details";
-import {useDispatch,useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {burger} from "../../redux/ingredients/selectors";
 
 const BurgerIngredients = ({
@@ -78,8 +78,8 @@ const BurgerIngredients = ({
 };
 
 BurgerIngredients.propTypes = {
-  isPopupData:PropTypes.object.isRequired,
-  popupOpenIngredient:PropTypes.func.isRequired,
+  openPopupIngredient:PropTypes.bool.isRequired,
+  setOpenPopupIngredient:PropTypes.func.isRequired,
   popupClose:PropTypes.func.isRequired,
 };
 

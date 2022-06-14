@@ -55,7 +55,6 @@ const IngredientDetails = ({popupClose}) => {
 };
 
 IngredientDetails.propTypes = {
-  isPopupData: PropTypes.object.isRequired,
   popupClose: PropTypes.func.isRequired
 };
 

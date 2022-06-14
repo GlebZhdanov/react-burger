@@ -1,13 +1,30 @@
-import React,{useContext} from 'react';
-import {ConstructorElement , DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import React from 'react';
+import {ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./constructor-list.module.css";
-import {ContextApp} from "../../context/ContextApp";
-import PlugIngredients from "../plug-ingredients/plug-ingridients";
+import { v4 as uuid } from "uuid";
+import {useDrop} from "react-dnd";
+import {addBun,addIngredient} from "../../redux/ingredient-details/actions";
+import {useDispatch} from "react-redux";
+import BurgerConstructorItem from "../burger-constructor-item/burger-constructor-item";
+import PlugBun from "../plug-bun/plug-bun";
+import PlugIngredients from "../plug-ingredients/plug-Ingredients";
 
 const ConstructorList = ({bun, ingredient}) => {
 
+  const dispatch = useDispatch();
+
+  const [, dropRef] = useDrop({
+    accept: 'ingredients',
+    drop(item) {
+      if(item.type === 'bun') {
+        dispatch(addBun(item))
+      }
+      dispatch(addIngredient({...item, key: uuid()}))
+    }
+  })
+
   return (
-    <ul className={styles.container}>
+    <ul ref={dropRef} className={styles.container}>
       <li className='pl-6'>
         {bun
           ?
@@ -19,23 +36,22 @@ const ConstructorList = ({bun, ingredient}) => {
             thumbnail={bun.image}
           />
           :
-          <PlugIngredients typeTop={true}/>}
+          <PlugBun typeTop={true}/>}
       </li>
       <ul className={styles.scroll}>
-        {ingredient
-        .filter(i => i.type !== 'bun')
-        .map((i, index) => (
-          <ul className={styles.content} key={index}>
-            <li>
-              <DragIcon type='primary'/>
-            </li>
-            <ConstructorElement
-              text={i.name}
-              thumbnail={i.image}
-              price={i.price}
-            />
-          </ul>
-        ))}
+        {ingredient.length !== 0
+        ?
+          ingredient.map((i, index) => (
+          <BurgerConstructorItem
+            key={i.key}
+            data={i}
+            index={index}
+            id={i.key}
+          />
+        ))
+        :
+          <PlugIngredients/>
+        }
       </ul>
       <li className='pl-6'>
         {bun
@@ -48,7 +64,7 @@ const ConstructorList = ({bun, ingredient}) => {
             thumbnail={bun.image}
           />
           :
-          <PlugIngredients typeTop={false}/>}
+          <PlugBun typeTop={false}/>}
       </li>
     </ul>
   );

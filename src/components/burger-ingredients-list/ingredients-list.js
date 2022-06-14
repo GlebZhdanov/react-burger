@@ -22,7 +22,7 @@ const IngredientsList = React.forwardRef(({data, title, setOpenPopupIngredient},
 IngredientsList.propTypes = {
   data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   title: PropTypes.string.isRequired,
-  popupOpenIngredient: PropTypes.func.isRequired
+  setOpenPopupIngredient: PropTypes.func.isRequired
 };
 
 export default IngredientsList;

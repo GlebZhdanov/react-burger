@@ -1,4 +1,6 @@
-import React, {useEffect, useReducer, useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import AppHeader from "../app-header/app-header";
 import styles from './app.module.css'
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
@@ -33,6 +35,7 @@ const App = () => {
   }
   return (
       <div className={styles.app}>
+        <DndProvider backend={HTML5Backend}>
         <ErrorMessage/>
         <AppHeader/>
           {dataLoading ?
@@ -51,6 +54,7 @@ const App = () => {
              <Preloader/>
             </>
           }
+        </DndProvider>
       </div>
   );
 }
