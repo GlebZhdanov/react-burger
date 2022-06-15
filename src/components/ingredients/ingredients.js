@@ -12,7 +12,6 @@ const Ingredients = ({item, setOpenPopupIngredient}) => {
 
   const dispatch = useDispatch()
 
-
   const [, dragRef] = useDrag({
     type: 'ingredients',
     item: item

@@ -7,11 +7,11 @@ import {ingredientPropType} from "../../utils/prop-types";
 const IngredientsList = React.forwardRef(({data, title, setOpenPopupIngredient}, ref) => {
   return (
     <>
-    <h2 ref={ref} className={styles.title}>{title}</h2>
-    <div className={`${styles.container} pb-10`}>
+    <h2  className={styles.title}>{title}</h2>
+    <div ref={ref} className={`${styles.container} pb-10`}>
         {data
-        .map((i, index) => (
-            <Ingredients item={i} key={index} setOpenPopupIngredient={setOpenPopupIngredient}
+        .map((i) => (
+            <Ingredients item={i} key={i._id} setOpenPopupIngredient={setOpenPopupIngredient}
             />
           ))}
       </div>

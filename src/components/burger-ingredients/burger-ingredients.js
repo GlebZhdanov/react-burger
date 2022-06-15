@@ -17,16 +17,17 @@ const BurgerIngredients = ({
 
   const {data} = useSelector(burger)
 
-  const  { ref: refBun, inView: inViewBun}  =  useInView( {
-      threshold: 0,
+  const [ refBun, inViewBun ] = useInView( {
+    "threshold": 0
     }) ;
-  const  { ref: refSauce, inView: inViewSauce }  =  useInView( {
-    threshold: 1,
-  }) ;
-  const  { ref: refMain, inView: inViewMain }  =  useInView( {
-    threshold: 1,
+  const [ refSauce, inViewSauce ] = useInView( {
+    "threshold": 0
+  });
+  const [ refMain, inViewMain ] = useInView( {
+    "threshold": 0
   }) ;
 
+  console.log(inViewMain)
   useEffect(() => {
     if(inViewBun === true) {
       setCurrent('one')
