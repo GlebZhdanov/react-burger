@@ -43,7 +43,7 @@
 }
 
 .close {
-  composes: close from '../order-accpeted-popup/order-accpeted.module.css';
+  composes: close from '../../components/order-accpeted-popup/order-accpeted.module.css';
   top: 45px;
 }
 

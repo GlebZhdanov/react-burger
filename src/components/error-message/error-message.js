@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from "./error-message.module.css";
+import {useSelector} from "react-redux";
+import {burger} from "../../redux/ingredients/selectors";
 
-const ErrorMessage = ({isLoadingFalse}) => {
+const ErrorMessage = () => {
+
+  const {dataError} = useSelector(burger);
+
   return (
-    <div className={`${styles.error} ${isLoadingFalse ? styles.opened : ''}`}>
+    <div className={`${styles.error} ${dataError ? styles.opened : ''}`}>
       <p className={styles.text}>Что-то пошло не так. Повторите попытку позднее. </p>
     </div>
   );

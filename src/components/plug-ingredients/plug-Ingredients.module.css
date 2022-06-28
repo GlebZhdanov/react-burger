@@ -1,0 +1,31 @@
+.constructor_element {
+  display: flex;
+  border-radius: var(--common-border-radius-s);
+  background: var(--background-element);
+  font-family: 'Jet Brains Mono';
+  width: 92%;
+  color: #F2F2F3;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  margin-left: 24px;
+}
+
+.constructor_element_pos_top {
+  border-radius: var(--top-constructor-item-border-radius);
+}
+
+.constructor_element_pos_bottom {
+  border-radius: var(--bottom-constructor-item-border-radius);
+}
+
+.constructor_element__text {
+  line-height: 24px;
+  font-size: 18px;
+  text-align: center;
+  flex-grow: 1;
+  margin: 0;
+  list-style-type: none;
+}
+

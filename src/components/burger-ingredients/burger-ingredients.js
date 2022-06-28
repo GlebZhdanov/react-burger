@@ -1,4 +1,4 @@
-import React,{useMemo,useEffect,useRef,useImperativeHandle} from 'react';
+import React,{useMemo,useEffect} from 'react';
 import styles from './burger-ingredients.module.css'
 import IngredientsList from "../burger-ingredients-list/ingredients-list";
 import {useInView} from 'react-intersection-observer';
@@ -6,22 +6,28 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details-popup/ingredient-details";
-import {ingredientPropType} from "../../utils/prop-types";
+import {useSelector} from "react-redux";
+import {burger} from "../../redux/ingredients/selectors";
 
-const BurgerIngredients = ({isPopupData, dataBurger, popupOpenIngredient, popupClose}) => {
+const BurgerIngredients = ({
+  openPopupIngredient,
+  setOpenPopupIngredient,
+  popupClose
+  }) => {
 
-  const {open} = isPopupData
+  const {data} = useSelector(burger)
 
-  const  { ref: refBun, inView: inViewBun}  =  useInView( {
-      threshold: 0,
+  const [ refBun, inViewBun ] = useInView( {
+    "threshold": 0
     }) ;
-  const  { ref: refSauce, inView: inViewSauce }  =  useInView( {
-    threshold: 1,
-  }) ;
-  const  { ref: refMain, inView: inViewMain }  =  useInView( {
-    threshold: 1,
+  const [ refSauce, inViewSauce ] = useInView( {
+    "threshold": 0
+  });
+  const [ refMain, inViewMain ] = useInView( {
+    "threshold": 0
   }) ;
 
+  console.log(inViewMain)
   useEffect(() => {
     if(inViewBun === true) {
       setCurrent('one')
@@ -35,17 +41,16 @@ const BurgerIngredients = ({isPopupData, dataBurger, popupOpenIngredient, popupC
   const [current, setCurrent] = React.useState('one');
 
   const filterDataMain = useMemo(() => {
-    return dataBurger.filter(item => item.type == 'main');
-  },[dataBurger])
+    return data.data.filter(item => item.type == 'main');
+  },[data])
 
   const filterDataBun = useMemo(() => {
-    return dataBurger.filter(item => item.type == 'bun');
-  },[dataBurger])
+    return data.data.filter(item => item.type == 'bun');
+  },[data])
 
   const filterDataSauce = useMemo(() => {
-    return dataBurger.filter(item => item.type == 'sauce');
-  },[dataBurger])
-
+    return data.data.filter(item => item.type == 'sauce');
+  },[data])
 
   return (
       <section className={styles.ingredients}>
@@ -62,21 +67,20 @@ const BurgerIngredients = ({isPopupData, dataBurger, popupOpenIngredient, popupC
           </Tab>
         </div>
         <div className={styles.scroll}>
-          <IngredientsList ref={refBun} popupOpenIngredient={popupOpenIngredient} data={filterDataBun} title={'Булки'}/>
-          <IngredientsList ref={refSauce} popupOpenIngredient={popupOpenIngredient} data={filterDataSauce} title={'Соусы'}/>
-          <IngredientsList ref={refMain} popupOpenIngredient={popupOpenIngredient} data={filterDataMain} title={'Начинки'}/>
+          <IngredientsList ref={refBun} setOpenPopupIngredient={setOpenPopupIngredient} data={filterDataBun} title={'Булки'}/>
+          <IngredientsList ref={refSauce} setOpenPopupIngredient={setOpenPopupIngredient} data={filterDataSauce} title={'Соусы'}/>
+          <IngredientsList ref={refMain} setOpenPopupIngredient={setOpenPopupIngredient} data={filterDataMain} title={'Начинки'}/>
         </div>
-        <Modal isPopupOpen={open} popupClose={popupClose}>
-          <IngredientDetails popupClose={popupClose} isPopupData={isPopupData}/>
+        <Modal isOpenPopup={openPopupIngredient} popupClose={popupClose}>
+          <IngredientDetails popupClose={popupClose}/>
         </Modal>
       </section>
   );
 };
 
 BurgerIngredients.propTypes = {
-  isPopupData:PropTypes.object.isRequired,
-  dataBurger: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-  popupOpenIngredient:PropTypes.func.isRequired,
+  openPopupIngredient:PropTypes.bool.isRequired,
+  setOpenPopupIngredient:PropTypes.func.isRequired,
   popupClose:PropTypes.func.isRequired,
 };
 

@@ -4,16 +4,14 @@ import styles from './ingredients-list.module.css'
 import PropTypes from "prop-types";
 import {ingredientPropType} from "../../utils/prop-types";
 
-const IngredientsList = React.forwardRef(({data, title, popupOpenIngredient}, ref) => {
-
+const IngredientsList = React.forwardRef(({data, title, setOpenPopupIngredient}, ref) => {
   return (
     <>
-    <h2 ref={ref} className={styles.title}>{title}</h2>
-    <div className={`${styles.container} pb-10`}>
+    <h2  className={styles.title}>{title}</h2>
+    <div ref={ref} className={`${styles.container} pb-10`}>
         {data
-        .map((i, index) => (
-            <Ingredients item={i} key={index}
-            popupOpenIngredient={popupOpenIngredient}
+        .map((i) => (
+            <Ingredients item={i} key={i._id} setOpenPopupIngredient={setOpenPopupIngredient}
             />
           ))}
       </div>
@@ -24,7 +22,7 @@ const IngredientsList = React.forwardRef(({data, title, popupOpenIngredient}, re
 IngredientsList.propTypes = {
   data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   title: PropTypes.string.isRequired,
-  popupOpenIngredient: PropTypes.func.isRequired
+  setOpenPopupIngredient: PropTypes.func.isRequired
 };
 
 export default IngredientsList;

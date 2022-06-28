@@ -1,14 +1,16 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import styles from './order-accpeted.module.css'
 import PropTypes from "prop-types";
-import {ContextApp} from "../../context/ContextApp";
+import {useSelector} from "react-redux";
+import {order} from "../../redux/order/selectors";
 
-const OrderDetails = ({popupClose, isLoadingFalseOrder}) => {
+const OrderDetails = ({popupClose}) => {
 
-  const {orderNumber} = useContext(ContextApp)
+  const {orderNumber,orderError} = useSelector(order);
+
   return (
     <>
-      {isLoadingFalseOrder ?
+      {orderError ?
         <ul className={styles.form_error}>
           <li className={styles.title_error}>
             Произошла ошибка оформления заказа
@@ -19,7 +21,7 @@ const OrderDetails = ({popupClose, isLoadingFalseOrder}) => {
         :
         <ul className={styles.form}>
           <li className={`${styles.text} pt-30`}>
-            {orderNumber.number}
+            {orderNumber}
           </li>
           <li className={`${styles.title} pt-8`}>
             идентификатор заказа
@@ -41,7 +43,6 @@ const OrderDetails = ({popupClose, isLoadingFalseOrder}) => {
 
 OrderDetails.propTypes = {
   popupClose: PropTypes.func.isRequired,
-  isLoadingFalseOrder: PropTypes.bool.isRequired
 };
 
 export default OrderDetails;

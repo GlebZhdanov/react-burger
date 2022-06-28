@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './plug-ingridients.module.css'
+import styles from './plug-bun.module.css'
 import PropTypes from "prop-types";
 
-const PlugIngredients = ({typeTop}) => {
+const PlugBuns = ({typeTop}) => {
 
   return (
     <div className={`${styles.constructor_element} ${typeTop ? styles.constructor_element_pos_top : styles.constructor_element_pos_bottom}`}>
@@ -15,8 +15,8 @@ const PlugIngredients = ({typeTop}) => {
   );
 };
 
-PlugIngredients.propTypes = {
+PlugBuns.propTypes = {
   typeTop: PropTypes.bool.isRequired,
 };
 
-export default PlugIngredients;
+export default PlugBuns;
