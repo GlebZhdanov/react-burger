@@ -5,7 +5,8 @@ import styles from './modal.module.css'
 import {KEYCODE_ESC} from "../../utils/constain";
 import PropTypes from "prop-types";
 
-const Modal = ({isOpenPopup, popupClose, children }) => {
+const Modal = ({children, popupClose}) => {
+
   const reactModal = document.getElementById('react-modals');
 
   useEffect(() => {
@@ -14,29 +15,24 @@ const Modal = ({isOpenPopup, popupClose, children }) => {
         popupClose();
       }
     }
-    if(isOpenPopup) {
       document.addEventListener('keydown', closeByEscape);
       return () => {
         document.removeEventListener('keydown', closeByEscape);
-      }
     }
-  }, [isOpenPopup])
+  }, []);
 
   return ReactDOM.createPortal (
-    <div onClick={popupClose} className={`${styles.popup} ${isOpenPopup ? styles.opened : ''}`}>
-      <ModalOverlay/>
-      <div onClick={(e) => e.stopPropagation()}>
-       {children}
-      </div>
-    </div>,
-    reactModal
+   <div className={styles.popup}>
+     <ModalOverlay/>
+     {children}
+     <button type="button" className={styles.close} onClick={popupClose}/>
+   </div>,reactModal
   );
 };
 
 Modal.propTypes = {
-  isOpenPopup: PropTypes.bool.isRequired,
+  children: PropTypes.element.isRequired,
   popupClose: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired
 };
 
 export default Modal;

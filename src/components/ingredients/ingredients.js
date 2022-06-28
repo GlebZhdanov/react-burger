@@ -2,21 +2,17 @@ import React,{useMemo} from 'react';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredients.module.css'
 import {ingredientPropType} from "../../utils/prop-types";
-import PropTypes from "prop-types";
 import {useDispatch,useSelector} from "react-redux";
 import {addIngredientInfo} from "../../redux/ingredient-details/actions";
 import {ingredientDetails} from "../../redux/ingredient-details/selectors";
 import {useDrag} from "react-dnd";
 
-const Ingredients = ({item, setOpenPopupIngredient}) => {
-
+const Ingredients = ({item}) => {
   const dispatch = useDispatch()
-
   const [, dragRef] = useDrag({
     type: 'ingredients',
     item: item
   });
-
   const {ingredient, bun} = useSelector(ingredientDetails);
 
   const ingredientCounter = useMemo(() => {
@@ -37,14 +33,11 @@ const Ingredients = ({item, setOpenPopupIngredient}) => {
     }
   }, [bun]);
 
-  function clickIngredients() {
-    dispatch(addIngredientInfo(item))
-    setOpenPopupIngredient()
-  }
+
   return (
       <ul ref={dragRef} className={`${styles.container} pl-4 pt-6 pb-6`}>
         <li>
-          <img  className={styles.image} src={item.image} onClick={clickIngredients}/>
+          <img className={styles.image} src={item.image}/>
         </li>
         <ul className={`${styles.content} p-1`}>
           <li className={styles.subtitle}>
@@ -69,7 +62,6 @@ const Ingredients = ({item, setOpenPopupIngredient}) => {
 
 Ingredients.propTypes = {
   item: ingredientPropType.isRequired,
-  setOpenPopupIngredient: PropTypes.func.isRequired
 };
 
 export default Ingredients;

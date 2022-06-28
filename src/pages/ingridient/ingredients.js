@@ -1,61 +1,64 @@
 import React from 'react';
-import styles from './ingredient-details.module.css'
-import PropTypes from "prop-types";
+import styles from './ingredients.module.css'
 import {useSelector} from "react-redux";
-import {ingredientDetails} from "../../redux/ingredient-details/selectors";
+import {burger} from "../../redux/ingredients/selectors";
+import {useParams} from "react-router-dom";
 
-const IngredientDetails = ({popupClose}) => {
+const IngredientsPage = () => {
 
-  const {ingredientInfo} = useSelector(ingredientDetails);
+  const {data} = useSelector(burger);
+
+  let {id} = useParams();
+
+  let ingredients = data.data.filter(i => i._id === id)[0];
+
+  if(!ingredients) {
+    return (
+      <>
+        <h1 className={styles.text_error}>Ингредиента не найдено</h1>
+      </>
+    )
+  }
 
   return (
-    <ul className={styles.form}>
-    {ingredientInfo ?
-      <>
+    <section className={styles.section}>
+      <ul className={styles.form}>
         <li className={`${styles.title} ml-10 mt-10`}>
           Детали ингредиента
         </li>
-        <img className={styles.image} src={ingredientInfo.image}/>
+        <img className={styles.image} src={ingredients.image}/>
         <li className={`${styles.text} pt-5`}>
-          {ingredientInfo.name}
+          {ingredients.name}
         </li>
         <ul className={`${styles.content} mt-9`}>
           <ul className={styles.container}>
             <li className={styles.text_container}>Калории,ккал</li>
             <li className={styles.count_container}>
-              {ingredientInfo.calories}
+              {ingredients.calories}
             </li>
           </ul>
           <ul className={styles.container}>
             <li className={styles.text_container}>Белки, г</li>
             <li className={styles.count_container}>
-              {ingredientInfo.proteins}
+              {ingredients.proteins}
             </li>
           </ul>
           <ul className={styles.container}>
             <li className={styles.text_container}>Жиры, г</li>
             <li className={styles.count_container}>
-              {ingredientInfo.fat}
+              {ingredients.fat}
             </li>
           </ul>
           <ul className={styles.container}>
             <li className={styles.text_container}>Углеводы, г</li>
             <li className={styles.count_container}>
-              {ingredientInfo.carbohydrates}
+              {ingredients.carbohydrates}
             </li>
           </ul>
         </ul>
-        <button type="button" className={styles.close} onClick={popupClose}/>
-      </>
-      :
-      <></>
-    }
-    </ul>
+      </ul>
+    </section>
   );
 };
 
-IngredientDetails.propTypes = {
-  popupClose: PropTypes.func.isRequired
-};
-
-export default IngredientDetails;
+export default IngredientsPage;

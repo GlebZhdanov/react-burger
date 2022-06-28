@@ -1,0 +1,84 @@
+.form {
+  height: 539px;
+  width: 720px;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  background-color: #1C1C21;;
+  border-radius: 40px;
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-family: 'Jet Brains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  align-items: center;
+  color: #F2F2F3;
+  margin-right: auto;
+}
+
+.image {
+  display: flex;
+  width: 480px;
+  height: 240px;
+  background-repeat: no-repeat;
+  background-color: #1C1C21;
+}
+
+.text {
+  font-family: 'Jet Brains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  color: #F2F2F3;
+}
+
+.close {
+  composes: close from '../../components/order-accpeted-popup/order-accpeted.module.css';
+  top: 45px;
+}
+
+.content {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 20px;
+}
+
+.container {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.text_container {
+  font-family: 'Jet Brains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #8585AD;
+}
+
+.count_container {
+  font-family: 'Iceland';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 24px;
+  align-items: center;
+  text-align: center;
+  color: #8585AD;
+}
+

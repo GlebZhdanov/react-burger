@@ -1,0 +1,58 @@
+.content {
+  margin-top: 170px;
+  display: grid;
+  grid-template-columns: 320px 320px;
+  grid-template-rows: auto;
+  justify-content: center;
+}
+
+.nav {
+
+}
+
+.container {
+  list-style-type: none;
+  padding: 0;
+}
+
+.title {
+  font-family: 'Jet Brains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #8585AD;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link {
+  color: #8585AD;
+  text-decoration: none;
+}
+
+.active_link {
+  color: white;
+  text-decoration: none;
+}
+
+.text {
+  font-family: 'Jet Brains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #8585AD;
+  opacity: 0.4;
+}
+
+.form {
+
+}
+
+.container_button {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
