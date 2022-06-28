@@ -12,7 +12,7 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
-  const {registrationSuccess} = useSelector(main);
+  const {registrationSuccess, registrationRequest} = useSelector(main);
 
   const initialValues = {
     name: '',
@@ -32,7 +32,7 @@ const Register = () => {
 
   useEffect(() => {
     if(registrationSuccess) {
-      history.push('/login')
+        history.push('/login')
     }
   },[registrationSuccess])
 

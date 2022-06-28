@@ -63,18 +63,6 @@ export const getUser = () => async (dispatch) => {
   dispatch({
     type: USER_REQUEST,
   })
-  // try {
-  //   const res = await api.getUserInfo();
-  //   console.log(res)
-  //   dispatch({
-  //     type: USER_SUCCESS,
-  //     payload: res,
-  //   })
-  // } catch (err) {
-  //   dispatch({
-  //     type: USER_ERROR
-  //   })
-  // }
   api.getUserInfo()
   .then((res) => {
     dispatch({

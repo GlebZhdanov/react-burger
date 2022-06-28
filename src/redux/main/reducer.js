@@ -47,6 +47,8 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         registrationSuccess: true,
+        name: action.payload.user.name,
+        email: action.payload.user.email,
       }
     case REGISTRATION_ERROR:
       return {

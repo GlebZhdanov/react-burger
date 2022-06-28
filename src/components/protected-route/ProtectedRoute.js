@@ -1,13 +1,11 @@
 import React from 'react';
 import {Redirect,Route,useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {main} from "../redux/main/selectors";
+import {main} from "../../redux/main/selectors";
 
 const ProtectedRoute = ({onlUnyAuth ,...props}) => {
-
   const { authorizationSuccess } = useSelector(main);
   const location = useLocation();
-
 
   if (onlUnyAuth && authorizationSuccess) {
     return (
