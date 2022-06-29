@@ -18,7 +18,7 @@ import Register from "../../pages/register/register";
 import ResetPassword from "../../pages/reset-password/reset-password";
 import Profile from "../../pages/profile/profile";
 import ForgotPassword from "../../pages/forgot-password/forgot-password";
-import ProtectedRoute from "../protected-route/ProtectedRoute";
+import ProtectedRoute from "../protected-route/protected-route";
 import {getUser} from "../../redux/main/actions";
 import IngredientsPage from "../../pages/ingridient/ingredients";
 import IngredientDetailsPopup from "../ingredient-details-popup/ingredient-details-popup";

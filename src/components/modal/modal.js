@@ -22,11 +22,15 @@ const Modal = ({children, popupClose}) => {
   }, []);
 
   return ReactDOM.createPortal (
-   <div className={styles.popup}>
-     <ModalOverlay/>
-     {children}
-     <button type="button" className={styles.close} onClick={popupClose}/>
-   </div>,reactModal
+    <>
+      <ModalOverlay/>
+      <div className={styles.popup}>
+        <ul className={styles.form}>
+          <button type="button" className={styles.close} onClick={popupClose}/>
+          {children}
+        </ul>
+     </div>
+    </>,reactModal
   );
 };
 

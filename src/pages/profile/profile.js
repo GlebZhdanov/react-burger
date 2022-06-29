@@ -12,10 +12,6 @@ const Profile = () => {
 
   const dispatch = useDispatch();
 
-  const historyReset = useHistory()
-
-  const { logOutUserSuccess } = useSelector(main)
-
   const { name, email } = useSelector(main);
 
   useEffect(() => {
@@ -55,12 +51,6 @@ const Profile = () => {
       email: email,
     })
   }
-
-  useEffect(() => {
-    if(logOutUserSuccess === true) {
-      historyReset.push('/login')
-    }
-  },[logOutUserSuccess])
 
   const logOut = () => {
     dispatch(loginOut());

@@ -27,6 +27,8 @@ export const registrationUser = (data) => (dispatch) => {
   })
   api.registration(data)
   .then((res) => {
+    setCookie('accessToken', res.accessToken);
+    localStorage.setItem('refreshToken', res.refreshToken);
     dispatch({
       type: REGISTRATION_SUCCESS,
       payload: res,

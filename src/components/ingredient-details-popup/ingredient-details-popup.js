@@ -21,14 +21,9 @@ const IngredientDetailsPopup = () => {
   let ingredients = data.data.filter(i => i._id === id)[0];
 
   return (
-    <>
       <Modal popupClose={popupClose}>
-        <ul className={styles.form}>
         <IngredientDetails dataIngredients={ingredients}/>
-
-        </ul>
       </Modal>
-    </>
   );
 };
 

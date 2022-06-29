@@ -4,7 +4,6 @@ import styles from './login.module.css'
 import {Link,useHistory,useLocation} from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
 import {authorizationUser} from "../../redux/main/actions";
-import {main} from "../../redux/main/selectors";
 
 const Login = () => {
   const history = useHistory();
@@ -14,10 +13,8 @@ const Login = () => {
     email: '',
     password: ''
   }
-  const [values, setValues] = React.useState(initialValues);
 
-  const {name, email} = useSelector(main)
-    console.log(name, email)
+  const [values, setValues] = React.useState(initialValues);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,8 +27,8 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(authorizationUser(values));
-    const { from } = location.state || {from: '/'}
-    history.push(from)
+    const { from } = location.state || {from: '/'};
+    history.push(from);
   }
 
   return (

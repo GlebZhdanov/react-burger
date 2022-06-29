@@ -134,12 +134,6 @@ export class Api {
       method: "GET",
       headers: this._getHeaders()
     })
-
-    // return fetch(`${this._url}/auth/user`, {
-    //   method: "GET",
-    //   headers: this._getHeaders()
-    // })
-    // .then(this._chekRes)
   }
 
   patchUserInfo(data) {
