@@ -7,7 +7,6 @@ import {useHistory, useParams} from "react-router-dom";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 
 const IngredientDetailsPopup = () => {
-
   const history = useHistory()
 
   const popupClose = () => {

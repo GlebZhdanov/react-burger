@@ -2,13 +2,11 @@ import React,{useMemo} from 'react';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredients.module.css'
 import {ingredientPropType} from "../../utils/prop-types";
-import {useDispatch,useSelector} from "react-redux";
-import {addIngredientInfo} from "../../redux/ingredient-details/actions";
+import {useSelector} from "react-redux";
 import {ingredientDetails} from "../../redux/ingredient-details/selectors";
 import {useDrag} from "react-dnd";
 
 const Ingredients = ({item}) => {
-  const dispatch = useDispatch()
   const [, dragRef] = useDrag({
     type: 'ingredients',
     item: item

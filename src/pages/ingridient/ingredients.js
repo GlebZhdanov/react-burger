@@ -5,7 +5,6 @@ import {burger} from "../../redux/ingredients/selectors";
 import {useParams} from "react-router-dom";
 
 const IngredientsPage = () => {
-
   const {data} = useSelector(burger);
 
   let {id} = useParams();

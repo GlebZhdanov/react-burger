@@ -27,7 +27,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(authorizationUser(values));
-    const { from } = location.state || {from: '/'};
+    const { from } = location.state || {from: {pathname: '/'}};
     history.push(from);
   }
 

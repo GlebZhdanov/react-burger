@@ -17,10 +17,9 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
   const {ingredient, bun} = useSelector(ingredientDetails);
 
   const { authorizationSuccess } = useSelector(main);
-
   const dispatch = useDispatch();
 
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     const priceDataBurger = ingredient.map(i => i.price).reduce((sum, current) => sum + current, 0);
@@ -34,17 +33,13 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
   },[ingredient, bun])
 
   const ingredientId = ingredient.map(i => i._id);
-
   const receiveId = () => {
     if(bun) {
       return [bun._id]
     }
   }
-
   const bunId = receiveId(bun)
-
   const dataIngredientId = ingredientId.concat(bunId);
-
   const dataOrderId ={
     "ingredients": dataIngredientId
   }

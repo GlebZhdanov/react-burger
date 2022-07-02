@@ -33,6 +33,7 @@ export const registrationUser = (data) => (dispatch) => {
       type: REGISTRATION_SUCCESS,
       payload: res,
     })
+    window.location.reload()
   })
   .catch(() => {
     dispatch({

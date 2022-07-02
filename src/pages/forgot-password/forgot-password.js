@@ -7,7 +7,6 @@ import {recoveryPassword} from "../../redux/password/actions";
 import {password} from "../../redux/password/selectors";
 
 const ForgotPassword = () => {
-
   const dispatch = useDispatch();
 
   const {resetPassword} = useSelector(password)
@@ -29,13 +28,12 @@ const ForgotPassword = () => {
 
   const history = useHistory();
 
-  console.log(resetPassword)
-
   useEffect(() => {
     if(resetPassword.length === 0) {
       history.push('/reset-password')
     }
   },[resetPassword])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -7,7 +7,6 @@ import {password} from "../../redux/password/selectors";
 import {recordPassword,resetPassword} from "../../redux/password/actions";
 
 const ResetPassword = () => {
-
   const [value, setValue] = React.useState('')
 
   const history = useHistory();
@@ -15,7 +14,6 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
 
   const { resetSuccess } = useSelector(password);
-
 
   useEffect(() => {
     if(resetSuccess) {
@@ -49,7 +47,7 @@ const ResetPassword = () => {
               />
             </li>
             <li className={'pb-20'}>
-              <Button type="primary" size="medium">
+              <Button disabled={!value} type="primary" size="medium">
                 Восстановить
               </Button>
             </li>

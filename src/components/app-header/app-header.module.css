@@ -50,6 +50,9 @@
   color: #8585AD;
   padding-left: 9px;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+
 }
 
 .active_link {
@@ -61,4 +64,17 @@
   padding-left: 9px;
   text-decoration: none;
   color: #F2F2F3;
+  display: flex;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding: 0;
+}
+
+.text {
+  /*padding-bottom:  10px;*/
 }

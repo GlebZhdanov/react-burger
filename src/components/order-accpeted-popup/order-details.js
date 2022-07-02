@@ -7,7 +7,6 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 import {KEYCODE_ESC} from "../../utils/constain";
 
 const OrderDetails = ({openPopupOrder,closePopup}) => {
-
   const {orderNumber,orderError} = useSelector(order);
 
   useEffect(() => {

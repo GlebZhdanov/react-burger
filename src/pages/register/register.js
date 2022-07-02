@@ -7,7 +7,6 @@ import {registrationUser} from "../../redux/main/actions";
 import {main} from "../../redux/main/selectors";
 
 const Register = () => {
-
   const history = useHistory()
 
   const dispatch = useDispatch();

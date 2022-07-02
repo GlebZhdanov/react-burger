@@ -2,12 +2,14 @@ import React,{useEffect} from 'react';
 import {Redirect,Route,useHistory,useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {main} from "../../redux/main/selectors";
+import {getCookie} from "../../utils/cookies";
 
 const ProtectedRoute = ({onlUnyAuth ,...props}) => {
-  const {authorizationSuccess} = useSelector(main);
+  const {authorizationSuccess, name, isToken} = useSelector(main);
   const location = useLocation();
+  const accessToken = getCookie("accessToken");
 
-  if (onlUnyAuth && authorizationSuccess) {
+  if (onlUnyAuth && accessToken) {
     return (
       <Redirect to={{
         pathname: '/'
@@ -15,11 +17,11 @@ const ProtectedRoute = ({onlUnyAuth ,...props}) => {
     )
   }
 
-  if(!onlUnyAuth && !authorizationSuccess) {
+  if(!onlUnyAuth && !accessToken) {
     return (
       <Redirect to={{
         pathname: '/login',
-        state: {from: location}
+        state: {from: location.state}
       }}/>
     )
   }

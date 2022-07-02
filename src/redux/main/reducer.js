@@ -32,6 +32,7 @@ const initialState = {
   logOutUserRequest: false,
   logOutUserSuccess: false,
   logOutUserError: false,
+  isToken: false,
   name: '',
   email: '',
 }
@@ -47,6 +48,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         registrationSuccess: true,
+        isToken: true,
       }
     case REGISTRATION_ERROR:
       return {
@@ -63,6 +65,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         authorizationSuccess: true,
+        isToken: true,
         name: action.payload.user.name,
         email: action.payload.user.email,
       }
@@ -82,6 +85,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         userSuccess: true,
         authorizationSuccess: true,
+        isToken: true,
         name: action.payload.user.name,
         email: action.payload.user.email,
       }
@@ -100,6 +104,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         patchUserSuccess: true,
+        isToken: true,
         name: action.payload.user.name,
         email: action.payload.user.email,
       }
@@ -120,6 +125,7 @@ export const reducer = (state = initialState, action) => {
         authorizationSuccess: false,
         logOutUserSuccess: true,
         registrationSuccess: false,
+        isToken: false,
       }
     case LOGOUT_USER_ERROR:
       return {

@@ -7,7 +7,6 @@ import {ingredientDetails} from "../../redux/ingredient-details/selectors";
 import {deleteIngredient,sortIngredient} from "../../redux/ingredient-details/actions";
 
 const BurgerConstructorItem = ({id, index, data}) => {
-
   const ref = useRef(null)
 
   const {ingredient} = useSelector(ingredientDetails)
@@ -53,7 +52,6 @@ const BurgerConstructorItem = ({id, index, data}) => {
       item.index = hoverIndex;
     }
   })
-
   const [{isDragging}, dragRef] = useDrag({
     type: 'card',
     item: () => {
@@ -63,7 +61,6 @@ const BurgerConstructorItem = ({id, index, data}) => {
       isDragging: monitor.isDragging()
     }))
   })
-
   const opacity = isDragging ? 0 : 1
 
   dragRef(dropRef(ref))

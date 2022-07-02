@@ -7,7 +7,6 @@ import {useSelector} from "react-redux";
 import {burger} from "../../redux/ingredients/selectors";
 
 const BurgerIngredients = () => {
-
   const {data} = useSelector(burger)
 
   const [ refBun, inViewBun ] = useInView( {
@@ -35,11 +34,9 @@ const BurgerIngredients = () => {
   const filterDataMain = useMemo(() => {
     return data.data.filter(item => item.type == 'main');
   },[data])
-
   const filterDataBun = useMemo(() => {
     return data.data.filter(item => item.type == 'bun');
   },[data])
-
   const filterDataSauce = useMemo(() => {
     return data.data.filter(item => item.type == 'sauce');
   },[data])

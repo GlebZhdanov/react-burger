@@ -6,7 +6,6 @@ import {KEYCODE_ESC} from "../../utils/constain";
 import PropTypes from "prop-types";
 
 const Modal = ({children, popupClose}) => {
-
   const reactModal = document.getElementById('react-modals');
 
   useEffect(() => {
