@@ -10,7 +10,6 @@ import PlugBun from "../plug-bun/plug-bun";
 import PlugIngredients from "../plug-ingredients/plug-Ingredients";
 
 const ConstructorList = ({bun, ingredient}) => {
-
   const dispatch = useDispatch();
 
   const [, dropRef] = useDrop({

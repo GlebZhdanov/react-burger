@@ -1,7 +1,8 @@
 import {
   INGREDIENTS_DATA_ERROR,
   INGREDIENTS_DATA_REQUEST,
-  INGREDIENTS_DATA_SUCCESS} from "./actions";
+  INGREDIENTS_DATA_SUCCESS
+} from "./actions";
 
 const initialState = {
   data: [],

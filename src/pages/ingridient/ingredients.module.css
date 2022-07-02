@@ -1,4 +1,33 @@
+.text_error {
+  font-family: 'Jet Brains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 40px;
+  text-align: center;
+  color: #F2F2F3;
+  padding-top: 100px;
+}
 
+.section {
+  display: flex;
+  justify-content: center;
+  margin-top: 120px;
+}
+
+.form {
+  height: 539px;
+  width: 720px;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 40px;
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
 
 .title {
   font-family: 'Jet Brains Mono';
@@ -8,7 +37,7 @@
   line-height: 40px;
   align-items: center;
   color: #F2F2F3;
-  margin-right: auto;
+  margin: 0;
 }
 
 .image {
@@ -16,7 +45,6 @@
   width: 480px;
   height: 240px;
   background-repeat: no-repeat;
-  background-color: #1C1C21;
 }
 
 .text {
@@ -68,4 +96,5 @@
   text-align: center;
   color: #8585AD;
 }
+
 

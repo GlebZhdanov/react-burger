@@ -22,6 +22,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         orderNumber: action.payload,
+        orderError: false,
       }
     case ORDER_DATA_ERROR:
       return {
