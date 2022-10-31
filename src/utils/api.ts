@@ -1,13 +1,15 @@
 import {getCookie,setCookie} from "./cookies";
+import {TApiConfig, TRecoveryPassword, TUserInfo, TUserAuthorization} from "./types";
 
 export class Api {
-  constructor(config) {
-    this._url = config.url;
-    this._headers = config.headers;
+  _url: string;
+
+  constructor({url}: TApiConfig) {
+    this._url = url;
   }
 
-  _chekRes(res) {
-    return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
+  _chekRes(res: Response) {
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
   _getHeaders() {
@@ -17,102 +19,119 @@ export class Api {
     }
   }
 
-  postOrder(data) {
+  postOrder(data: Array<string>) {
+    console.log(data)
     return fetch(`${this._url}/orders`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(data)
     })
-    .then(res => {
-      return this._chekRes(res)
-    })
+      .then(res => {
+        return this._chekRes(res)
+      })
   }
 
   getIngredients() {
     return fetch(`${this._url}/ingredients`, {
       method: "GET",
     })
-    .then(res => {
-      return this._chekRes(res)
-    })
+      .then(res => {
+        return this._chekRes(res)
+      })
   }
 
-  resetPassword(data) {
+  resetPassword(data: string) {
     return fetch(`${this._url}/password-reset`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({email: data})
     })
-    .then(res => {
-      return this._chekRes(res)
-    })
+      .then(res => {
+        return this._chekRes(res)
+      })
   }
 
-  recoveryPassword(data) {
+  recoveryPassword(data: TRecoveryPassword) {
+    console.log(data)
     return fetch(`${this._url}/password-reset/reset`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         password: data.password,
         token: getCookie('accessToken')
       })
     })
-    .then(res => {
-      return this._chekRes(res)
-    })
+      .then(res => {
+        return this._chekRes(res)
+      })
   }
 
-  registration({name, email, password}) {
+  registration({name, email, password} : TUserInfo) {
     return fetch(this._url + "/auth/register", {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         name,
         email,
         password
       })
     })
-    .then(this._chekRes)
+      .then(this._chekRes)
   }
 
-  authorization(data) {
+  authorization(data: TUserAuthorization) {
+    console.log(data)
     return fetch(this._url + "/auth/login", {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         password: data.password,
         email: data.email,
       })
     })
-    .then(this._chekRes)
+      .then(this._chekRes)
   }
 
   logOut() {
     return fetch(this._url + "/auth/logout", {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         token: localStorage.getItem('refreshToken')
       })
     })
-    .then(this._chekRes)
+      .then(this._chekRes)
   }
 
   refreshToken = () => {
     return fetch(`${this._url}/auth/token`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         token: localStorage.getItem("refreshToken"),
       }),
     }).then(this._chekRes);
   };
 
-  fetchWithRefresh = async (url, options) => {
+  fetchWithRefresh = async (url: string, options: any) => {
     try {
       const res = await fetch(url, options);
       return await this._chekRes(res);
-    } catch (err) {
+    } catch (err: any) {
       if (err.message === "jwt expired") {
         const refreshData = await this.refreshToken(); //обновляем токен
         if (!refreshData.success) {
@@ -136,7 +155,8 @@ export class Api {
     })
   }
 
-  patchUserInfo(data) {
+  patchUserInfo(data: TUserInfo) {
+    console.log(data)
     return this.fetchWithRefresh(`${this._url}/auth/user`,{
       method: "PATCH",
       headers: this._getHeaders(),
@@ -147,15 +167,10 @@ export class Api {
       })
     })
   }
-
 }
 
 const api = new Api({
   url: 'https://norma.nomoreparties.space/api',
-  headers: {
-    'Content-Type': 'application/json',
-  }
 })
 
 export {api}
-
