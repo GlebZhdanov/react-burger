@@ -1,7 +1,6 @@
 import {
   ADD_BUN,
   ADD_INGREDIENT,
-  ADD_INGREDIENT_INFO,
   DELETE_INGREDIENT,
   RESET_INGREDIENTS,
   SORT_INGREDIENTS
@@ -25,11 +24,6 @@ export const reducer = (state = initialState, action) => {
         ...state,
         bun: action.payload
       };
-    case ADD_INGREDIENT_INFO:
-      return {
-        ...state,
-        ingredientInfo: action.payload
-      }
     case SORT_INGREDIENTS:
       return {
         ...state,

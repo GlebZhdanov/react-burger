@@ -4,7 +4,6 @@ import {useSelector} from "react-redux";
 import {burger} from "../../redux/ingredients/selectors";
 
 const ErrorMessage = () => {
-
   const {dataError} = useSelector(burger);
 
   return (
