@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import styles from './order-accpeted.module.css'
-import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
 import {order} from "../../redux/order/selectors";
 import ModalOverlay from "../modal-overlay/modal-overlay";
@@ -52,11 +51,6 @@ const OrderDetails = ({openPopupOrder,closePopup}) => {
       </ModalOverlay>
     </div>
   );
-};
-
-OrderDetails.propTypes = {
-  closePopup: PropTypes.func.isRequired,
-  openPopupOrder: PropTypes.bool.isRequired,
 };
 
 export default OrderDetails;

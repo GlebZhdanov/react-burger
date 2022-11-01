@@ -71,7 +71,7 @@ const Register = () => {
               name={'password'}/>
           </li>
           <li className={'pb-20'}>
-            <Button type="primary" size="medium">
+            <Button htmlType='button' type="primary" size="medium">
               Зарегистрироваться
             </Button>
           </li>

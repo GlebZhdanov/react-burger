@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from "./modal-overlay.module.css";
 
-const ModalOverlay = ({children}) => {
+type Props = {
+  children?: React.ReactNode
+}
+
+const ModalOverlay: React.FC<Props>= ({children}) => {
   return (
     <div className={styles.overlay}>
       {children}

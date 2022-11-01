@@ -1,8 +1,6 @@
 import React from 'react'
 import Ingredients from "../ingredients/ingredients";
 import styles from './ingredients-list.module.css'
-import PropTypes from "prop-types";
-import {ingredientPropType} from "../../utils/prop-types";
 import {useLocation, Link} from "react-router-dom";
 
 const IngredientsList = React.forwardRef(({data, title}, ref) => {
@@ -28,11 +26,6 @@ const IngredientsList = React.forwardRef(({data, title}, ref) => {
     </>
   );
 });
-
-IngredientsList.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-  title: PropTypes.string.isRequired,
-};
 
 export default IngredientsList;
 

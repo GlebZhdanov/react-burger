@@ -3,20 +3,24 @@ import ReactDOM from "react-dom";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import styles from './modal.module.css'
 import {KEYCODE_ESC} from "../../utils/constain";
-import PropTypes from "prop-types";
 
-const Modal = ({children, popupClose}) => {
-  const reactModal = document.getElementById('react-modals');
+type TModal = {
+  children: any,
+  popupClose: () => void,
+}
+
+const Modal: React.FC<TModal> = ({children, popupClose}) => {
+  const reactModal = document.getElementById('react-modals') as HTMLElement;
 
   useEffect(() => {
-    function closeByEscape(evt) {
+    function closeByEscape(evt: any) {
       if(evt.key === KEYCODE_ESC) {
         popupClose();
       }
     }
-      document.addEventListener('keydown', closeByEscape);
-      return () => {
-        document.removeEventListener('keydown', closeByEscape);
+    document.addEventListener('keydown', closeByEscape);
+    return () => {
+      document.removeEventListener('keydown', closeByEscape);
     }
   }, []);
 
@@ -28,14 +32,9 @@ const Modal = ({children, popupClose}) => {
           <button type="button" className={styles.close} onClick={popupClose}/>
           {children}
         </ul>
-     </div>
+      </div>
     </>,reactModal
   );
-};
-
-Modal.propTypes = {
-  children: PropTypes.element.isRequired,
-  popupClose: PropTypes.func.isRequired,
 };
 
 export default Modal;

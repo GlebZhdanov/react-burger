@@ -122,12 +122,12 @@ const Profile = () => {
                   :
                   <ul className={styles.container_button}>
                     <li>
-                      <Button type="secondary" size="medium" onClick={resetForm}>
+                      <Button htmlType='button' type="secondary" size="medium" onClick={resetForm}>
                         Отмена
                       </Button>
                     </li>
                     <li>
-                      <Button type="primary" size="medium" onClick={handleSubmit}>
+                      <Button htmlType='button' type="primary" size="medium" onClick={handleSubmit}>
                         Сохранить
                       </Button>
                     </li>

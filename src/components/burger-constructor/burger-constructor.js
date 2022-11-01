@@ -4,7 +4,6 @@ import image from '../../images/Subtract.svg'
 import ConstructorList from "../burger-constructor-list/constructor-list";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import OrderDetails from "../order-accpeted-popup/order-details";
-import PropTypes from "prop-types";
 import {useDispatch,useSelector} from "react-redux";
 import {loadOrder} from "../../redux/order/actions";
 import {ingredientDetails} from "../../redux/ingredient-details/selectors";
@@ -58,14 +57,14 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
   }
 
   return (
-    <section className={`${styles.constructor} pt-25`}>
+    <section className={`${styles.section} pt-25`}>
       <ConstructorList bun={bun} ingredient={ingredient}/>
       <div className={`${styles.container} pt-10`}>
         <div className={`${styles.content} pr-10`}>
           <p className={styles.count}>{totalPrice}</p>
           <img className={styles.image} src={image}/>
         </div>
-        <Button type="primary" size="large"
+        <Button htmlType='button' type="primary" size="large"
         onClick={clickButtonPlaceOrder}>
           Оформить заказ
         </Button>
@@ -73,12 +72,6 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
       <OrderDetails closePopup={closePopup} openPopupOrder={openPopupOrder}/>
     </section>
   );
-};
-
-BurgerConstructor.propTypes = {
-  openPopupOrder:PropTypes.bool.isRequired,
-  popupClose:PropTypes.func.isRequired,
-  setOpenPopupOrder: PropTypes.func.isRequired
 };
 
 export default BurgerConstructor;

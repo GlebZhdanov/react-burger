@@ -47,7 +47,7 @@ const ResetPassword = () => {
               />
             </li>
             <li className={'pb-20'}>
-              <Button disabled={!value} type="primary" size="medium">
+              <Button htmlType='button' disabled={!value} type="primary" size="medium">
                 Восстановить
               </Button>
             </li>

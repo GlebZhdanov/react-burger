@@ -59,15 +59,10 @@ const App = () => {
               <Switch location={background || location}>
                 <Route path='/' exact>
                   <main className={styles.main}>
-                    <BurgerIngredients
-                      openPopupIngredient={openPopupIngredient}
-                      setOpenPopupIngredient={popupOpenIngredient}
-                      popupClose={popupClose}/>
+                    <BurgerIngredients/>
                     <BurgerConstructor
                       openPopupOrder={openPopupOrder}
-                      setOpenPopupOrder={setOpenPopupOrder}
-                      setOpenPopupIngredient={setOpenPopupIngredient}
-                      popupClose={popupClose}/>
+                      setOpenPopupOrder={setOpenPopupOrder}/>
                   </main>
                 </Route>
                 <Route path='/ingredients/:id'>

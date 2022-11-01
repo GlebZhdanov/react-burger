@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './plug-bun.module.css'
-import PropTypes from "prop-types";
 
 const PlugBuns = ({typeTop}) => {
 
@@ -13,10 +12,6 @@ const PlugBuns = ({typeTop}) => {
       </span>
     </div>
   );
-};
-
-PlugBuns.propTypes = {
-  typeTop: PropTypes.bool.isRequired,
 };
 
 export default PlugBuns;
