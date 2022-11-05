@@ -2,8 +2,14 @@ import React from 'react'
 import Ingredients from "../ingredients/ingredients";
 import styles from './ingredients-list.module.css'
 import {useLocation, Link} from "react-router-dom";
+import {TIngredientData} from "../../utils/types";
 
-const IngredientsList = React.forwardRef(({data, title}, ref) => {
+type TIngredientsList = {
+  data: Array<TIngredientData>,
+  title: string,
+}
+
+const IngredientsList = React.forwardRef<HTMLDivElement, TIngredientsList>(({data, title}, ref) => {
   let location = useLocation();
 
   return (

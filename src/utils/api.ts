@@ -88,7 +88,6 @@ export class Api {
   }
 
   authorization(data: TUserAuthorization) {
-    console.log(data)
     return fetch(this._url + "/auth/login", {
       method: "POST",
       headers: {

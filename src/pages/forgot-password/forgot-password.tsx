@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import styles from './forgot-password.module.css'
 import {Button,Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link,useHistory} from "react-router-dom";
@@ -6,7 +6,7 @@ import {useDispatch,useSelector} from "react-redux";
 import {recoveryPassword} from "../../redux/password/actions";
 import {password} from "../../redux/password/selectors";
 
-const ForgotPassword = () => {
+const ForgotPassword: FC = () => {
   const dispatch = useDispatch();
 
   const {resetPassword} = useSelector(password)
@@ -18,7 +18,7 @@ const ForgotPassword = () => {
 
   const [values, setValues] = React.useState(initialValues);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({
       ...values,
@@ -35,8 +35,9 @@ const ForgotPassword = () => {
   },[resetPassword])
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(recoveryPassword(values))
   }
 
@@ -71,7 +72,7 @@ const ForgotPassword = () => {
               />
             </li>
             <li className={'pb-20'}>
-              <Button type="primary" size="medium">
+              <Button type="primary" size="medium" htmlType='submit'>
                 Сохранить
               </Button>
             </li>

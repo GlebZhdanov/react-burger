@@ -1,19 +1,24 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import styles from './order-accpeted.module.css'
 import {useSelector} from "react-redux";
 import {order} from "../../redux/order/selectors";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import {KEYCODE_ESC} from "../../utils/constain";
 
-const OrderDetails = ({openPopupOrder,closePopup}) => {
-  const {orderNumber,orderError} = useSelector(order);
+type TOrderDetails = {
+  openPopupOrder: boolean,
+  closePopup: () => void,
+}
 
-  useEffect(() => {
-    function closeByEscape(evt) {
-      if(evt.key === KEYCODE_ESC) {
-        closePopup();
-      }
+const OrderDetails: FC<TOrderDetails> = ({openPopupOrder,closePopup}) => {
+
+  const {orderNumber,orderError} = useSelector(order);
+  function closeByEscape(evt: { key: string; }) {
+    if(evt.key === KEYCODE_ESC) {
+      closePopup();
     }
+  }
+  useEffect(() => {
     document.addEventListener('keydown', closeByEscape);
     return () => {
       document.removeEventListener('keydown', closeByEscape);

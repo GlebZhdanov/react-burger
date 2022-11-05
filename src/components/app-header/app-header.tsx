@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from './app-header.module.css';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import {Link} from "react-router-dom";
@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {main} from "../../redux/main/selectors";
 import {getCookie} from "../../utils/cookies";
 
-const AppHeader = () => {
+const AppHeader: FC = () => {
   const isConstructor = !!useRouteMatch({ path: '/', exact: true});
   const isProfile = !!useRouteMatch('/profile');
   const accessToken = getCookie("accessToken");

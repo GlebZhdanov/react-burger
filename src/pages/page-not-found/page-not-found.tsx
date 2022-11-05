@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './page-not-found.module.css'
 
-function PageNotFound () {
+const PageNotFound: FC = () => {
   return (
     <div className={styles.not_found}>
       <h2 className={styles.not_found__title}>404</h2>

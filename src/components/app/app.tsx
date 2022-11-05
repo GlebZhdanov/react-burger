@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Switch,Route,useLocation} from "react-router-dom";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -11,7 +11,6 @@ import ErrorMessage from "../error-message/error-message";
 import {loadIngredients} from "../../redux/ingredients/actions";
 import {useDispatch,useSelector} from "react-redux";
 import {burger} from "../../redux/ingredients/selectors";
-import {deleteOrder} from "../../redux/order/actions";
 import PageNotFound from "../../pages/page-not-found/page-not-found";
 import Login from "../../pages/login/login";
 import Register from "../../pages/register/register";
@@ -22,30 +21,21 @@ import ProtectedRoute from "../protected-route/protected-route";
 import {getUser} from "../../redux/main/actions";
 import IngredientsPage from "../../pages/ingridient/ingredients";
 import IngredientDetailsPopup from "../ingredient-details-popup/ingredient-details-popup";
+import { Location } from "history";
 
-const App = () => {
-  const [openPopupOrder, setOpenPopupOrder] = useState(false);
-  const [openPopupIngredient, setOpenPopupIngredient] = useState(false);
+const App: FC = () => {
 
   const dispatch = useDispatch();
-  let location = useLocation();
+  let location = useLocation<{ background: Location }>();
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(loadIngredients());
+    // @ts-ignore
     dispatch(getUser())
   },[])
 
   const {dataLoading} = useSelector(burger);
-
-  const popupOpenIngredient = (data) => {
-    setOpenPopupIngredient(true);
-  }
-
-  const popupClose = () => {
-    setOpenPopupIngredient(false)
-    setOpenPopupOrder(false)
-    dispatch(deleteOrder())
-  }
 
   let background = location.state && location.state.background;
 
@@ -60,9 +50,7 @@ const App = () => {
                 <Route path='/' exact>
                   <main className={styles.main}>
                     <BurgerIngredients/>
-                    <BurgerConstructor
-                      openPopupOrder={openPopupOrder}
-                      setOpenPopupOrder={setOpenPopupOrder}/>
+                    <BurgerConstructor/>
                   </main>
                 </Route>
                 <Route path='/ingredients/:id'>

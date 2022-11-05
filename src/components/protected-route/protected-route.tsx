@@ -1,11 +1,14 @@
-import React,{useEffect} from 'react';
-import {Redirect,Route,useHistory,useLocation} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {main} from "../../redux/main/selectors";
+import React, {FC} from 'react';
+import {Redirect,Route,useLocation} from "react-router-dom";
 import {getCookie} from "../../utils/cookies";
 
-const ProtectedRoute = ({onlUnyAuth ,...props}) => {
-  const {authorizationSuccess, name, isToken} = useSelector(main);
+type TProtectedRoute = {
+  onlUnyAuth: boolean,
+  children: React.ReactNode,
+  path: string,
+}
+
+const ProtectedRoute: FC<TProtectedRoute> = ({onlUnyAuth ,...children}) => {
   const location = useLocation();
   const accessToken = getCookie("accessToken");
 
@@ -26,7 +29,7 @@ const ProtectedRoute = ({onlUnyAuth ,...props}) => {
     )
   }
 
-  return <Route {...props}/>
+  return <Route {...children}/>
 };
 
 export default ProtectedRoute;

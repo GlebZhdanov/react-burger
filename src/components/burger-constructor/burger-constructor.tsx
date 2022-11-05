@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styles from './burger-constructor.module.css'
 import image from '../../images/Subtract.svg'
 import ConstructorList from "../burger-constructor-list/constructor-list";
@@ -11,8 +11,10 @@ import {resetIngredients} from "../../redux/ingredient-details/actions";
 import {main} from "../../redux/main/selectors";
 import {useHistory} from "react-router-dom";
 
-const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
-  const [totalPrice, setTotalPrice] = useState(0);
+const BurgerConstructor: FC = () => {
+  const [openPopupOrder, setOpenPopupOrder] = useState<boolean>(false);
+
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const {ingredient, bun} = useSelector(ingredientDetails);
 
   const { authorizationSuccess } = useSelector(main);
@@ -21,7 +23,8 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
   const history = useHistory();
 
   useEffect(() => {
-    const priceDataBurger = ingredient.map(i => i.price).reduce((sum, current) => sum + current, 0);
+    // @ts-ignore
+    const priceDataBurger: number = ingredient.map(i => i.price).reduce((sum: number, current: number) => sum + current, 0);
 
     if(bun) {
       const priceBun = bun.price * 2;
@@ -30,9 +33,9 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
       setTotalPrice(priceDataBurger)
     }
   },[ingredient, bun])
-
+// @ts-ignore
   const ingredientId = ingredient.map(i => i._id);
-  const receiveId = () => {
+  const receiveId = (bun: any) => {
     if(bun) {
       return [bun._id]
     }
@@ -47,8 +50,11 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
     if(authorizationSuccess === false) {
       return history.push('/login')
     }
+    // @ts-ignore
     dispatch(loadOrder(dataOrderId));
+    // @ts-ignore
     setOpenPopupOrder(true);
+    // @ts-ignore
     dispatch(resetIngredients())
   }
 
@@ -62,7 +68,7 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
       <div className={`${styles.container} pt-10`}>
         <div className={`${styles.content} pr-10`}>
           <p className={styles.count}>{totalPrice}</p>
-          <img className={styles.image} src={image}/>
+          <img className={styles.image} src={image} />
         </div>
         <Button htmlType='button' type="primary" size="large"
         onClick={clickButtonPlaceOrder}>

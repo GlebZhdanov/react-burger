@@ -1,12 +1,11 @@
-import React from 'react';
-import styles from './ingredient-details.module.css'
+import React, {FC} from 'react';
 import {useSelector} from "react-redux";
 import Modal from "../modal/modal";
 import {burger} from "../../redux/ingredients/selectors";
 import {useHistory, useParams} from "react-router-dom";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 
-const IngredientDetailsPopup = () => {
+const IngredientDetailsPopup: FC = () => {
   const history = useHistory()
 
   const popupClose = () => {
@@ -15,9 +14,10 @@ const IngredientDetailsPopup = () => {
 
   const {data} = useSelector(burger);
 
-  let {id} = useParams();
+  let {id} = useParams<{id: string}>();
 
-  let ingredients = data.data.filter(i => i._id === id)[0];
+  // @ts-ignore
+  let ingredients = data.data.filter((i) => i._id === id)[0];
 
   return (
       <Modal popupClose={popupClose}>

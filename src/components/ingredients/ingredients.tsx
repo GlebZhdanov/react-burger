@@ -1,11 +1,17 @@
-import React,{useMemo} from 'react';
+import React, {FC, useMemo} from 'react';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredients.module.css'
 import {useSelector} from "react-redux";
 import {ingredientDetails} from "../../redux/ingredient-details/selectors";
 import {useDrag} from "react-dnd";
+import {TIngredientData} from "../../utils/types";
 
-const Ingredients = ({item}) => {
+type TIngredients ={
+  item: TIngredientData
+}
+
+const Ingredients: FC<TIngredients> = ({item}) => {
+
   const [, dragRef] = useDrag({
     type: 'ingredients',
     item: item
@@ -14,13 +20,13 @@ const Ingredients = ({item}) => {
 
   const ingredientCounter = useMemo(() => {
     let counter = 0;
-    ingredient.forEach((ingredient) => {
+    ingredient.forEach((ingredient: TIngredientData) => {
       if (ingredient._id === item._id) counter++;
     });
     return counter;
   }, [ingredient]);
 
-  const bunCounter = useMemo(() => {
+  let bunCounter = useMemo(() => {
     if(bun) {
       let counter = 0;
       [bun].forEach((bun) => {
@@ -48,7 +54,7 @@ const Ingredients = ({item}) => {
         <li className={styles.count}>
           {item.type === 'bun'
             ?
-            <Counter count={bunCounter} size="default" />
+            <Counter count={bunCounter!} size="default" />
             :
             <Counter count={ingredientCounter} size="default" />
           }

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from "./error-message.module.css";
 import {useSelector} from "react-redux";
 import {burger} from "../../redux/ingredients/selectors";
 
-const ErrorMessage = () => {
+const ErrorMessage: FC = () => {
   const {dataError} = useSelector(burger);
 
   return (

@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from './plug-bun.module.css'
 
-const PlugBuns = ({typeTop}) => {
+type TPlugBuns = {
+  typeTop: boolean,
+}
+
+const PlugBuns: FC<TPlugBuns> = ({typeTop}) => {
 
   return (
     <div className={`${styles.constructor_element} ${typeTop ? styles.constructor_element_pos_top : styles.constructor_element_pos_bottom}`}>

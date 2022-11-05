@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from './plug-Ingredients.module.css'
 
-const PlugIngredients = () => {
+const PlugIngredients: FC = () => {
 
   return (
     <ul className={styles.constructor_element}>

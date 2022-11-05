@@ -1,12 +1,12 @@
-import React,{useEffect,useState, Fragment} from 'react';
+import React, {useEffect, useState, Fragment, FC} from 'react';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './profile.module.css'
-import {Link,Route,Switch, useLocation, useHistory} from "react-router-dom";
+import {Link,Route,Switch, useLocation} from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
 import {loginOut, patchUser} from "../../redux/main/actions";
 import {main} from "../../redux/main/selectors";
 
-const Profile = () => {
+const Profile: FC = () => {
 
   const history = useLocation();
 
@@ -21,13 +21,14 @@ const Profile = () => {
   })
 
   useEffect(() => {
+    // @ts-ignore
     setDataUser({
         name: name,
         email: email,
     })
   }, [name, email])
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setDataUser({
       ...dataUser,
@@ -35,13 +36,15 @@ const Profile = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(patchUser(dataUser))
   }
 
-  const resetForm = (e) => {
+  const resetForm = (e: React.FormEvent) => {
     e.preventDefault();
+    // @ts-ignore
     setDataUser({
       name: name,
       email: email,
@@ -49,6 +52,7 @@ const Profile = () => {
   }
 
   const logOut = () => {
+    // @ts-ignore
     dispatch(loginOut());
   }
 

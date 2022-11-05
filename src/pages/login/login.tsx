@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {FC, useEffect} from 'react';
 import {EmailInput, PasswordInput,Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './login.module.css'
 import {Link,useHistory,useLocation} from "react-router-dom";
-import {useDispatch,useSelector} from "react-redux";
-import {authorizationUser} from "../../redux/main/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {authorizationUser, USER_ERROR} from "../../redux/main/actions";
+import {main} from "../../redux/main/selectors";
 
-const Login = () => {
+const Login: FC = () => {
+  const {authorizationSuccess} = useSelector(main);
+
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -16,7 +19,7 @@ const Login = () => {
 
   const [values, setValues] = React.useState(initialValues);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({
       ...values,
@@ -24,12 +27,19 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent)  => {
+    console.log(location.state)
     e.preventDefault();
+    // @ts-ignore
     dispatch(authorizationUser(values));
+    // @ts-ignore
+  }
+
+  useEffect(() => {
+    // @ts-ignore
     const { from } = location.state || {from: {pathname: '/'}};
     history.push(from);
-  }
+  },[authorizationSuccess])
 
   return (
     <div className={styles.container}>
@@ -45,7 +55,7 @@ const Login = () => {
             <PasswordInput onChange={handleInputChange} value={values.password} name={'password'}/>
           </li>
           <li className={'pb-20'}>
-            <Button htmlType='button' type="primary" size="medium">
+            <Button htmlType='submit' type="primary" size="medium">
               Войти
             </Button>
           </li>

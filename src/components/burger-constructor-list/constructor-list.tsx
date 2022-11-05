@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./constructor-list.module.css";
 import { v4 as uuid } from "uuid";
@@ -8,16 +8,25 @@ import {useDispatch} from "react-redux";
 import BurgerConstructorItem from "../burger-constructor-item/burger-constructor-item";
 import PlugBun from "../plug-bun/plug-bun";
 import PlugIngredients from "../plug-ingredients/plug-Ingredients";
+import {TIngredientData} from "../../utils/types";
 
-const ConstructorList = ({bun, ingredient}) => {
+type TConstructorList = {
+  bun: TIngredientData,
+  ingredient:Array<TIngredientData>,
+}
+
+const ConstructorList: FC<TConstructorList> = ({bun, ingredient}) => {
+
   const dispatch = useDispatch();
 
   const [, dropRef] = useDrop({
     accept: 'ingredients',
-    drop(item) {
+    drop(item: DragEvent) {
       if(item.type === 'bun') {
+        // @ts-ignore
         dispatch(addBun(item))
       }
+      // @ts-ignore
       dispatch(addIngredient({...item, key: uuid()}))
     }
   })

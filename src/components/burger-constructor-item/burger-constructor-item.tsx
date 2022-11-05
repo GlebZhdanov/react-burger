@@ -1,28 +1,37 @@
-import React,{useRef} from 'react';
+import React, {FC, useRef} from 'react';
 import styles from "../burger-constructor-list/constructor-list.module.css";
 import {ConstructorElement,DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDrag,useDrop} from "react-dnd";
+import {DropTargetMonitor, useDrag, useDrop, XYCoord} from "react-dnd";
 import {useDispatch,useSelector} from "react-redux";
 import {ingredientDetails} from "../../redux/ingredient-details/selectors";
 import {deleteIngredient,sortIngredient} from "../../redux/ingredient-details/actions";
+import {TIngredientData} from "../../utils/types";
 
-const BurgerConstructorItem = ({id, index, data}) => {
-  const ref = useRef(null)
+type TBurgerConstructorItem = {
+  id: string,
+  index: number,
+  data: TIngredientData,
+}
+
+const BurgerConstructorItem: FC<TBurgerConstructorItem> = ({id, index, data}) => {
+
+  const ref = useRef<HTMLUListElement>(null);
 
   const {ingredient} = useSelector(ingredientDetails)
 
   const dispatch = useDispatch()
 
-  const sortingIngredient = (dragIndex, hoverIndex) => {
+  const sortingIngredient = (dragIndex: number, hoverIndex: number) => {
     const newIngredients = [...ingredient];
     newIngredients.splice(hoverIndex,0,newIngredients.splice(dragIndex, 1)[0]
     );
+    // @ts-ignore
     dispatch(sortIngredient(newIngredients))
   }
 
   const [, dropRef] = useDrop({
     accept:'card',
-    hover: (item, monitor) => {
+    hover: (item: TIngredientData , monitor: DropTargetMonitor) => {
       if(!ref.current) {
         return;
       }
@@ -37,7 +46,7 @@ const BurgerConstructorItem = ({id, index, data}) => {
       const hoverBoundingRect = ref.current.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset();
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return;
@@ -66,6 +75,7 @@ const BurgerConstructorItem = ({id, index, data}) => {
   dragRef(dropRef(ref))
 
   const handleDelete = () => {
+    // @ts-ignore
     dispatch(deleteIngredient(data))
   }
 
