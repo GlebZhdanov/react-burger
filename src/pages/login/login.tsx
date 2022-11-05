@@ -28,7 +28,6 @@ const Login: FC = () => {
   };
 
   const handleSubmit = (e: React.FormEvent)  => {
-    console.log(location.state)
     e.preventDefault();
     // @ts-ignore
     dispatch(authorizationUser(values));
@@ -37,7 +36,7 @@ const Login: FC = () => {
 
   useEffect(() => {
     // @ts-ignore
-    const { from } = location.state || {from: {pathname: '/'}};
+    const { from } = location.state || {from: {pathname: '/login'}};
     history.push(from);
   },[authorizationSuccess])
 

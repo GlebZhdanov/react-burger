@@ -1,24 +1,35 @@
 import React, {useEffect, useState, Fragment, FC} from 'react';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './profile.module.css'
-import {Link,Route,Switch, useLocation} from "react-router-dom";
+import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
 import {loginOut, patchUser} from "../../redux/main/actions";
 import {main} from "../../redux/main/selectors";
+import {getCookie} from "../../utils/cookies";
 
 const Profile: FC = () => {
 
-  const history = useLocation();
+  const history = useHistory();
+
+  const location = useLocation();
 
   const dispatch = useDispatch();
 
   const { name, email } = useSelector(main);
+
+  const accessToken = getCookie("accessToken");
 
   const [dataUser, setDataUser] = useState({
     name: '',
     email: '',
     password: '',
   })
+
+  useEffect(() => {
+    if(!accessToken) {
+      history.push("/login");
+    }
+  }, [accessToken]);
 
   useEffect(() => {
     // @ts-ignore
@@ -64,12 +75,12 @@ const Profile: FC = () => {
             <nav className={`${styles.nav} mr-15`}>
               <ul className={styles.container}>
                 <li className={`${styles.title} pb-3 pt-3`}>
-                  <Link className={history.pathname === '/profile' ? styles.active_link : styles.link}  to='/profile'>
+                  <Link className={location.pathname === '/profile' ? styles.active_link : styles.link}  to='/profile'>
                     Профиль
                   </Link>
                 </li>
                 <li className={`${styles.title} pb-3 pt-3`}>
-                  <Link className={history.pathname === '/profile/order' ? styles.active_link : styles.link} to='/profile/order'>
+                  <Link className={location.pathname === '/profile/order' ? styles.active_link : styles.link} to='/profile/order'>
                     История заказов
                   </Link>
                 </li>
