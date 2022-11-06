@@ -40,52 +40,52 @@ const App: FC = () => {
   let background = location.state && location.state.background;
 
   return (
-      <div className={styles.app}>
-        <DndProvider backend={HTML5Backend}>
+    <div className={styles.app}>
+      <DndProvider backend={HTML5Backend}>
         <ErrorMessage/>
         <AppHeader/>
-          {dataLoading ?
-            <>
-              <Switch location={background || location}>
-                <Route path='/' exact>
-                  <main className={styles.main}>
-                    <BurgerIngredients/>
-                    <BurgerConstructor/>
-                  </main>
-                </Route>
-                <Route path='/ingredients/:id'>
-                  <IngredientsPage/>
-                </Route>
-                <ProtectedRoute onlUnyAuth={true} path='/login'>
-                  <Login/>
-                </ProtectedRoute>
-                <ProtectedRoute onlUnyAuth={true} path='/register'>
-                  <Register/>
-                </ProtectedRoute>
-                <ProtectedRoute onlUnyAuth={true} path='/forgot-password'>
-                  <ForgotPassword/>
-                </ProtectedRoute>
-                <ProtectedRoute onlUnyAuth={true} path='/reset-password'>
-                  <ResetPassword/>
-                </ProtectedRoute>
-                <ProtectedRoute onlUnyAuth={false} path='/profile'>
-                  <Profile/>
-                </ProtectedRoute>
-                <Route path='*'>
-                  <PageNotFound/>
-                </Route>
-              </Switch>
-              {background && <Route path="/ingredients/:id">
-                <IngredientDetailsPopup/>
-              </Route>}
-            </>
-            :
-            <>
-             <Preloader/>
-            </>
-          }
-        </DndProvider>
-      </div>
+        {dataLoading ?
+          <>
+            <Switch location={background || location}>
+              <Route path='/' exact>
+                <main className={styles.main}>
+                  <BurgerIngredients/>
+                  <BurgerConstructor/>
+                </main>
+              </Route>
+              <Route path='/ingredients/:id'>
+                <IngredientsPage/>
+              </Route>
+              <ProtectedRoute onlUnyAuth={true} path='/login'>
+                <Login/>
+              </ProtectedRoute>
+              <ProtectedRoute onlUnyAuth={true} path='/register'>
+                <Register/>
+              </ProtectedRoute>
+              <ProtectedRoute onlUnyAuth={true} path='/forgot-password'>
+                <ForgotPassword/>
+              </ProtectedRoute>
+              <ProtectedRoute onlUnyAuth={true} path='/reset-password'>
+                <ResetPassword/>
+              </ProtectedRoute>
+              <ProtectedRoute onlUnyAuth={false} path='/profile'>
+                <Profile/>
+              </ProtectedRoute>
+              <Route path='*'>
+                <PageNotFound/>
+              </Route>
+            </Switch>
+            {background && <Route path="/ingredients/:id">
+              <IngredientDetailsPopup/>
+            </Route>}
+          </>
+          :
+          <>
+            <Preloader/>
+          </>
+        }
+      </DndProvider>
+    </div>
   );
 }
 
