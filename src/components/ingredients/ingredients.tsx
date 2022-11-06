@@ -38,28 +38,28 @@ const Ingredients: FC<TIngredients> = ({item}) => {
 
 
   return (
-      <ul ref={dragRef} className={`${styles.container} pl-4 pt-6 pb-6`}>
-        <li>
-          <img className={styles.image} src={item.image}/>
+    <ul ref={dragRef} className={`${styles.container} pl-4 pt-6 pb-6`}>
+      <li>
+        <img className={styles.image} src={item.image}/>
+      </li>
+      <ul className={`${styles.content} p-1`}>
+        <li className={styles.subtitle}>
+          {item.price}
         </li>
-        <ul className={`${styles.content} p-1`}>
-          <li className={styles.subtitle}>
-            {item.price}
-          </li>
-          <li>
-            <CurrencyIcon type={"primary"}/>
-          </li>
-        </ul>
-        <li className={styles.name}>{item.name}</li>
-        <li className={styles.count}>
-          {item.type === 'bun'
-            ?
-            <Counter count={bunCounter!} size="default" />
-            :
-            <Counter count={ingredientCounter} size="default" />
-          }
+        <li>
+          <CurrencyIcon type={"primary"}/>
         </li>
       </ul>
+      <li className={styles.name}>{item.name}</li>
+      <li className={styles.count}>
+        {item.type === 'bun'
+          ?
+          <Counter count={bunCounter!} size="default" />
+          :
+          <Counter count={ingredientCounter} size="default" />
+        }
+      </li>
+    </ul>
   );
 };
 

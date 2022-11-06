@@ -11,7 +11,7 @@ const BurgerIngredients: FC = () => {
 
   const [ refBun, inViewBun ] = useInView( {
     "threshold": 0
-    }) ;
+  }) ;
   const [ refSauce, inViewSauce ] = useInView( {
     "threshold": 0
   });
@@ -45,37 +45,37 @@ const BurgerIngredients: FC = () => {
   },[data])
 
   return (
-      <section className={styles.ingredients}>
-        <h1 className={styles.title}>Соберите бургер</h1>
-        <div className={`${styles.tab} pt-5 pb-10`}>
-          <Tab value="one" active={current === 'one'} onClick={() => setCurrent('one')}>
-            Булки
-          </Tab>
-          <Tab value="two" active={current === 'two'} onClick={() => setCurrent('two')}>
-            Соусы
-          </Tab>
-          <Tab value="three" active={current === 'three'} onClick={() => setCurrent('three')}>
-            Начинки
-          </Tab>
-        </div>
-        <div className={styles.scroll}>
-          <IngredientsList
-            ref={refBun}
-            // @ts-ignore
-            data={filterDataBun}
-            title={'Булки'}/>
-          <IngredientsList
-            ref={refSauce}
-            // @ts-ignore
-            data={filterDataSauce}
-            title={'Соусы'}/>
-          <IngredientsList
-            ref={refMain}
-            // @ts-ignore
-            data={filterDataMain}
-            title={'Начинки'}/>
-        </div>
-      </section>
+    <section className={styles.ingredients}>
+      <h1 className={styles.title}>Соберите бургер</h1>
+      <div className={`${styles.tab} pt-5 pb-10`}>
+        <Tab value="one" active={current === 'one'} onClick={() => setCurrent('one')}>
+          Булки
+        </Tab>
+        <Tab value="two" active={current === 'two'} onClick={() => setCurrent('two')}>
+          Соусы
+        </Tab>
+        <Tab value="three" active={current === 'three'} onClick={() => setCurrent('three')}>
+          Начинки
+        </Tab>
+      </div>
+      <div className={styles.scroll}>
+        <IngredientsList
+          ref={refBun}
+          // @ts-ignore
+          data={filterDataBun}
+          title={'Булки'}/>
+        <IngredientsList
+          ref={refSauce}
+          // @ts-ignore
+          data={filterDataSauce}
+          title={'Соусы'}/>
+        <IngredientsList
+          ref={refMain}
+          // @ts-ignore
+          data={filterDataMain}
+          title={'Начинки'}/>
+      </div>
+    </section>
   );
 };
 
