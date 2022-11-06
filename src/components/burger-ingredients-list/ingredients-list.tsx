@@ -34,4 +34,3 @@ const IngredientsList = React.forwardRef<HTMLDivElement, TIngredientsList>(({dat
 });
 
 export default IngredientsList;
-

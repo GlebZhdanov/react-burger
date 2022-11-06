@@ -1,3 +1,2 @@
-@import '../../../react-burger(Пример)/node_modules/@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
-@import "src/src/fonts/fonst.css";
-@import "src/src/fonts/normalize.css";
+@import url('.././src/fonts/fonst.css');
+@import url('.././src/fonts/normalize.css');
