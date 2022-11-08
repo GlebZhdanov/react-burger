@@ -24,17 +24,11 @@ const Modal: React.FC<TModal> = ({children, popupClose}) => {
     }
   }, []);
 
-  const handleClosePopup = (event: React.SyntheticEvent) => {
-    if (event.currentTarget === event.target) {
-        popupClose();
-    }
-  };
-
   return ReactDOM.createPortal (
     <>
-      <ModalOverlay>
-        <div onClick={handleClosePopup} className={styles.popup}>
-          <ul className={styles.form}>
+      <ModalOverlay popupClose={popupClose}>
+        <div className={styles.popup} >
+          <ul className={styles.form} onClick={(event: React.SyntheticEvent) => event.stopPropagation()}>
             <button type="button" className={styles.close} onClick={popupClose}/>
             {children}
           </ul>

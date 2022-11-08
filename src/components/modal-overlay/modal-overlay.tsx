@@ -1,14 +1,21 @@
 import React, {FC} from 'react';
 import styles from "./modal-overlay.module.css";
 
-type Props = {
+type TModalOverlay = {
   children: React.ReactNode,
+  popupClose?: () => void,
 }
 
-const ModalOverlay: FC<Props>= ({children}) => {
+const ModalOverlay: FC<TModalOverlay>= ({children, popupClose}) => {
+
+  const handleClosePopup = () => {
+    if (popupClose) {
+      popupClose();
+    }
+  };
 
   return (
-    <div  className={styles.overlay}>
+    <div onClick={handleClosePopup} className={styles.overlay}>
       {children}
     </div>
   );
