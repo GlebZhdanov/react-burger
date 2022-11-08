@@ -3,14 +3,15 @@ import styles from './ingredients.module.css'
 import {useSelector} from "react-redux";
 import {burger} from "../../redux/ingredients/selectors";
 import {useParams} from "react-router-dom";
-import {TIngredientData} from "../../utils/types";
 
 const IngredientsPage: FC = () => {
   const {data} = useSelector(burger);
 
-  let {id} = useParams<{id: string}>();
+  // @ts-ignore
+  let {id} = useParams();
 
-  let ingredients = data.data.filter((i: TIngredientData) => i._id === id)[0];
+  // @ts-ignore
+  let ingredients = data.data.filter(i => i._id === id)[0];
 
   if(!ingredients) {
     return (
@@ -21,7 +22,7 @@ const IngredientsPage: FC = () => {
   }
 
   return (
-    <section className={styles.section}>
+    <main className={styles.section}>
       <ul className={styles.form}>
         <li className={`${styles.title} ml-10 mt-10`}>
           Детали ингредиента
@@ -57,7 +58,7 @@ const IngredientsPage: FC = () => {
           </ul>
         </ul>
       </ul>
-    </section>
+    </main>
   );
 };
 

@@ -11,7 +11,6 @@ type TIngredientsList = {
 
 const IngredientsList = React.forwardRef<HTMLDivElement, TIngredientsList>(({data, title}, ref) => {
   let location = useLocation();
-
   return (
     <>
       <h2  className={styles.title}>{title}</h2>

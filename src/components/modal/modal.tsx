@@ -5,7 +5,7 @@ import styles from './modal.module.css'
 import {KEYCODE_ESC} from "../../utils/constain";
 
 type TModal = {
-  children: any,
+  children: React.ReactNode,
   popupClose: () => void,
 }
 
@@ -13,8 +13,8 @@ const Modal: React.FC<TModal> = ({children, popupClose}) => {
   const reactModal = document.getElementById('react-modals') as HTMLElement;
 
   useEffect(() => {
-    function closeByEscape(evt: any) {
-      if(evt.key === KEYCODE_ESC) {
+    function closeByEscape(event: KeyboardEvent) {
+      if(event.key === KEYCODE_ESC) {
         popupClose();
       }
     }
@@ -24,15 +24,22 @@ const Modal: React.FC<TModal> = ({children, popupClose}) => {
     }
   }, []);
 
+  const handleClosePopup = (event: React.SyntheticEvent) => {
+    if (event.currentTarget === event.target) {
+        popupClose();
+    }
+  };
+
   return ReactDOM.createPortal (
     <>
-      <ModalOverlay/>
-      <div className={styles.popup}>
-        <ul className={styles.form}>
-          <button type="button" className={styles.close} onClick={popupClose}/>
-          {children}
-        </ul>
-      </div>
+      <ModalOverlay>
+        <div onClick={handleClosePopup} className={styles.popup}>
+          <ul className={styles.form}>
+            <button type="button" className={styles.close} onClick={popupClose}/>
+            {children}
+          </ul>
+        </div>
+      </ModalOverlay>
     </>,reactModal
   );
 };

@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styles from './app-header.module.css';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {useRouteMatch} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {main} from "../../redux/main/selectors";
@@ -12,6 +12,7 @@ const AppHeader: FC = () => {
   const isProfile = !!useRouteMatch('/profile');
   const accessToken = getCookie("accessToken");
   const {name} = useSelector(main);
+  const history = useHistory();
 
   return (
     <header className={styles.header}>
@@ -29,7 +30,7 @@ const AppHeader: FC = () => {
           </li>
         </ul>
         <ul className={`${styles.ul} pr-10`}>
-          <li>
+          <li className={styles.link} onClick={() => history.push('/')}>
             <Logo/>
           </li>
             <Link to='/profile' className={isProfile ? styles.active_link : styles.span}>
