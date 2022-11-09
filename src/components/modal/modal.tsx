@@ -25,16 +25,15 @@ const Modal: React.FC<TModal> = ({children, popupClose}) => {
   }, []);
 
   return ReactDOM.createPortal (
-    <>
-      <ModalOverlay popupClose={popupClose}>
-        <div className={styles.popup} >
-          <ul className={styles.form} onClick={(event: React.SyntheticEvent) => event.stopPropagation()}>
-            <button type="button" className={styles.close} onClick={popupClose}/>
-            {children}
-          </ul>
-        </div>
-      </ModalOverlay>
-    </>,reactModal
+    <ModalOverlay popupClose={popupClose}>
+      <div className={styles.popup} >
+        <ul className={styles.form} onClick={(event) => event.stopPropagation()}>
+          <button type="button" className={styles.close} onClick={popupClose}/>
+          {children}
+        </ul>
+      </div>
+    </ModalOverlay>
+    ,reactModal
   );
 };
 

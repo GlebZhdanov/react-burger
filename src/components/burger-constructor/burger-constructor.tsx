@@ -10,6 +10,7 @@ import {ingredientDetails} from "../../redux/ingredient-details/selectors";
 import {resetIngredients} from "../../redux/ingredient-details/actions";
 import {main} from "../../redux/main/selectors";
 import {useHistory} from "react-router-dom";
+import Modal from "../modal/modal";
 
 const BurgerConstructor: FC = () => {
   const [openPopupOrder, setOpenPopupOrder] = useState<boolean>(false);
@@ -59,7 +60,7 @@ const BurgerConstructor: FC = () => {
   }
 
   const closePopup = () => {
-    setOpenPopupOrder(false)
+    setOpenPopupOrder(false);
   }
 
   return (
@@ -75,7 +76,11 @@ const BurgerConstructor: FC = () => {
           Оформить заказ
         </Button>
       </div>
-      <OrderDetails closePopup={closePopup} openPopupOrder={openPopupOrder}/>
+      {openPopupOrder &&
+        <Modal popupClose={closePopup}>
+          <OrderDetails/>
+        </Modal>
+      }
     </section>
   );
 };

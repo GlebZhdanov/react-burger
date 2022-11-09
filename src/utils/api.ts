@@ -20,7 +20,6 @@ export class Api {
   }
 
   postOrder(data: Array<string>) {
-    console.log(data)
     return fetch(`${this._url}/orders`, {
       method: "POST",
       headers: {

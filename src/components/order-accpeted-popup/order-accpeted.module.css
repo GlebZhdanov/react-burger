@@ -8,14 +8,13 @@
   border-radius: 40px;
   margin: 0;
   list-style-type: none;
-  padding: 0;
   display: flex;
   align-items: center;
+  padding: 120px 0 120px;
 }
 
 .form_error {
   composes: form;
-  margin: 0;
   background-color: #AF2B1E;
   justify-content: center;
 }
@@ -47,6 +46,7 @@
   0px 0px 8px rgba(51, 51, 255, 0.25),
   0px 4px 32px rgba(51, 51, 255, 0.5);
   margin: 0;
+  padding: 0;
 }
 
 .image {
