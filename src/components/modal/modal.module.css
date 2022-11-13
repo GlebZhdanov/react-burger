@@ -23,6 +23,7 @@
   background-color: rgba(0, 0, 0, .0);
   border: 0;
   cursor: pointer;
+  z-index: 1;
 }
 
 .form {
@@ -44,5 +45,3 @@
   visibility: visible;
   opacity: 1;
 }
-
-

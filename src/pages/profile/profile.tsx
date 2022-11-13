@@ -1,18 +1,23 @@
-import React,{useEffect,useState, Fragment} from 'react';
+import React, {useEffect, useState, Fragment, FC} from 'react';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './profile.module.css'
-import {Link,Route,Switch, useLocation, useHistory} from "react-router-dom";
+import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
 import {loginOut, patchUser} from "../../redux/main/actions";
 import {main} from "../../redux/main/selectors";
+import {getCookie} from "../../utils/cookies";
 
-const Profile = () => {
+const Profile: FC = () => {
 
-  const history = useLocation();
+  const history = useHistory();
+
+  const location = useLocation();
 
   const dispatch = useDispatch();
 
   const { name, email } = useSelector(main);
+
+  const accessToken = getCookie("accessToken");
 
   const [dataUser, setDataUser] = useState({
     name: '',
@@ -21,13 +26,20 @@ const Profile = () => {
   })
 
   useEffect(() => {
+    if(!accessToken) {
+      history.push("/login");
+    }
+  }, [accessToken]);
+
+  useEffect(() => {
+    // @ts-ignore
     setDataUser({
         name: name,
         email: email,
     })
   }, [name, email])
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setDataUser({
       ...dataUser,
@@ -35,13 +47,15 @@ const Profile = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(patchUser(dataUser))
   }
 
-  const resetForm = (e) => {
+  const resetForm = (e: React.FormEvent) => {
     e.preventDefault();
+    // @ts-ignore
     setDataUser({
       name: name,
       email: email,
@@ -49,6 +63,7 @@ const Profile = () => {
   }
 
   const logOut = () => {
+    // @ts-ignore
     dispatch(loginOut());
   }
 
@@ -60,12 +75,12 @@ const Profile = () => {
             <nav className={`${styles.nav} mr-15`}>
               <ul className={styles.container}>
                 <li className={`${styles.title} pb-3 pt-3`}>
-                  <Link className={history.pathname === '/profile' ? styles.active_link : styles.link}  to='/profile'>
+                  <Link className={location.pathname === '/profile' ? styles.active_link : styles.link}  to='/profile'>
                     Профиль
                   </Link>
                 </li>
                 <li className={`${styles.title} pb-3 pt-3`}>
-                  <Link className={history.pathname === '/profile/order' ? styles.active_link : styles.link} to='/profile/order'>
+                  <Link className={location.pathname === '/profile/order' ? styles.active_link : styles.link} to='/profile/order'>
                     История заказов
                   </Link>
                 </li>
@@ -122,12 +137,12 @@ const Profile = () => {
                   :
                   <ul className={styles.container_button}>
                     <li>
-                      <Button type="secondary" size="medium" onClick={resetForm}>
+                      <Button htmlType='button' type="secondary" size="medium" onClick={resetForm}>
                         Отмена
                       </Button>
                     </li>
                     <li>
-                      <Button type="primary" size="medium" onClick={handleSubmit}>
+                      <Button htmlType='button' type="primary" size="medium" onClick={handleSubmit}>
                         Сохранить
                       </Button>
                     </li>

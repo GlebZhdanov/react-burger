@@ -2,8 +2,6 @@
   box-sizing: border-box;
   height: 88px;
   background-color: #1C1C21;
-  /*margin-left: calc(-50vw + 50%);*/
-  /*margin-right: calc(-50vw + 50%);*/
   display: flex;
 }
 
@@ -77,4 +75,8 @@
 
 .text {
   /*padding-bottom:  10px;*/
+}
+
+.link {
+  cursor: pointer;
 }

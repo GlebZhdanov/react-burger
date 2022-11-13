@@ -1,19 +1,21 @@
-import React,{useEffect,useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styles from './burger-constructor.module.css'
 import image from '../../images/Subtract.svg'
 import ConstructorList from "../burger-constructor-list/constructor-list";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import OrderDetails from "../order-accpeted-popup/order-details";
-import PropTypes from "prop-types";
 import {useDispatch,useSelector} from "react-redux";
 import {loadOrder} from "../../redux/order/actions";
 import {ingredientDetails} from "../../redux/ingredient-details/selectors";
 import {resetIngredients} from "../../redux/ingredient-details/actions";
 import {main} from "../../redux/main/selectors";
 import {useHistory} from "react-router-dom";
+import Modal from "../modal/modal";
 
-const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
-  const [totalPrice, setTotalPrice] = useState(0);
+const BurgerConstructor: FC = () => {
+  const [openPopupOrder, setOpenPopupOrder] = useState<boolean>(false);
+
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const {ingredient, bun} = useSelector(ingredientDetails);
 
   const { authorizationSuccess } = useSelector(main);
@@ -22,7 +24,8 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
   const history = useHistory();
 
   useEffect(() => {
-    const priceDataBurger = ingredient.map(i => i.price).reduce((sum, current) => sum + current, 0);
+    // @ts-ignore
+    const priceDataBurger: number = ingredient.map(i => i.price).reduce((sum: number, current: number) => sum + current, 0);
 
     if(bun) {
       const priceBun = bun.price * 2;
@@ -31,9 +34,9 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
       setTotalPrice(priceDataBurger)
     }
   },[ingredient, bun])
-
+// @ts-ignore
   const ingredientId = ingredient.map(i => i._id);
-  const receiveId = () => {
+  const receiveId = (bun: any) => {
     if(bun) {
       return [bun._id]
     }
@@ -48,37 +51,38 @@ const BurgerConstructor = ({openPopupOrder, setOpenPopupOrder}) => {
     if(authorizationSuccess === false) {
       return history.push('/login')
     }
+    // @ts-ignore
     dispatch(loadOrder(dataOrderId));
+    // @ts-ignore
     setOpenPopupOrder(true);
+    // @ts-ignore
     dispatch(resetIngredients())
   }
 
   const closePopup = () => {
-    setOpenPopupOrder(false)
+    setOpenPopupOrder(false);
   }
 
   return (
-    <section className={`${styles.constructor} pt-25`}>
+    <section className={`${styles.section} pt-25`}>
       <ConstructorList bun={bun} ingredient={ingredient}/>
       <div className={`${styles.container} pt-10`}>
         <div className={`${styles.content} pr-10`}>
           <p className={styles.count}>{totalPrice}</p>
-          <img className={styles.image} src={image}/>
+          <img className={styles.image} src={image} />
         </div>
-        <Button type="primary" size="large"
+        <Button htmlType='button' type="primary" size="large"
         onClick={clickButtonPlaceOrder}>
           Оформить заказ
         </Button>
       </div>
-      <OrderDetails closePopup={closePopup} openPopupOrder={openPopupOrder}/>
+      {openPopupOrder &&
+        <Modal popupClose={closePopup}>
+          <OrderDetails/>
+        </Modal>
+      }
     </section>
   );
-};
-
-BurgerConstructor.propTypes = {
-  openPopupOrder:PropTypes.bool.isRequired,
-  popupClose:PropTypes.func.isRequired,
-  setOpenPopupOrder: PropTypes.func.isRequired
 };
 
 export default BurgerConstructor;

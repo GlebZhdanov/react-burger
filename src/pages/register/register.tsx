@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {EmailInput, PasswordInput, Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './register.module.css'
 import {Link, useHistory} from "react-router-dom";
@@ -6,7 +6,7 @@ import {useDispatch,useSelector} from "react-redux";
 import {registrationUser} from "../../redux/main/actions";
 import {main} from "../../redux/main/selectors";
 
-const Register = () => {
+const Register: FC = () => {
   const history = useHistory()
 
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Register = () => {
 
   const [values, setValues] = React.useState(initialValues);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({
       ...values,
@@ -35,8 +35,9 @@ const Register = () => {
     }
   },[registrationSuccess])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(registrationUser(values));
   }
 
@@ -71,7 +72,7 @@ const Register = () => {
               name={'password'}/>
           </li>
           <li className={'pb-20'}>
-            <Button type="primary" size="medium">
+            <Button htmlType='submit' type="primary" size="medium">
               Зарегистрироваться
             </Button>
           </li>

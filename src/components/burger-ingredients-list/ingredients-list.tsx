@@ -1,13 +1,16 @@
 import React from 'react'
 import Ingredients from "../ingredients/ingredients";
 import styles from './ingredients-list.module.css'
-import PropTypes from "prop-types";
-import {ingredientPropType} from "../../utils/prop-types";
 import {useLocation, Link} from "react-router-dom";
+import {TIngredientData} from "../../utils/types";
 
-const IngredientsList = React.forwardRef(({data, title}, ref) => {
+type TIngredientsList = {
+  data: Array<TIngredientData>,
+  title: string,
+}
+
+const IngredientsList = React.forwardRef<HTMLDivElement, TIngredientsList>(({data, title}, ref) => {
   let location = useLocation();
-
   return (
     <>
       <h2  className={styles.title}>{title}</h2>
@@ -29,10 +32,4 @@ const IngredientsList = React.forwardRef(({data, title}, ref) => {
   );
 });
 
-IngredientsList.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
-  title: PropTypes.string.isRequired,
-};
-
 export default IngredientsList;
-

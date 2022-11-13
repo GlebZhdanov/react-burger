@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import styles from "./reset-password.module.css";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, useHistory} from "react-router-dom";
@@ -6,7 +6,7 @@ import {useDispatch,useSelector} from "react-redux";
 import {password} from "../../redux/password/selectors";
 import {recordPassword,resetPassword} from "../../redux/password/actions";
 
-const ResetPassword = () => {
+const ResetPassword: FC = () => {
   const [value, setValue] = React.useState('')
 
   const history = useHistory();
@@ -21,9 +21,11 @@ const ResetPassword = () => {
     }
   },[resetSuccess])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(resetPassword(value));
+    // @ts-ignore
     dispatch(recordPassword(value));
   }
 
@@ -47,7 +49,7 @@ const ResetPassword = () => {
               />
             </li>
             <li className={'pb-20'}>
-              <Button disabled={!value} type="primary" size="medium">
+              <Button htmlType='submit' disabled={!value} type="primary" size="medium">
                 Восстановить
               </Button>
             </li>
