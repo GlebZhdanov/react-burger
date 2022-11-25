@@ -1,11 +1,10 @@
 import React, {FC} from 'react';
 import styles from './order-accpeted.module.css'
-import {useSelector} from "react-redux";
-import {order} from "../../redux/order/selectors";
+import {useSelector} from "../../redux/hooks";
 
 const OrderDetails: FC = () => {
 
-  const {orderNumber,orderError} = useSelector(order);
+  const {orderNumber,orderError} = useSelector(state => state.order);
 
   return (
     <>

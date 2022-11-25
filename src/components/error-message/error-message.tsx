@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import styles from "./error-message.module.css";
-import {useSelector} from "react-redux";
-import {burger} from "../../redux/ingredients/selectors";
+import {useSelector} from "../../redux/hooks";
 
 const ErrorMessage: FC = () => {
-  const {dataError} = useSelector(burger);
+
+  const {dataError} = useSelector(state => state.burger);
 
   return (
     <div className={`${styles.error} ${dataError ? styles.opened : ''}`}>

@@ -1,5 +1,5 @@
 import {getCookie,setCookie} from "./cookies";
-import {TApiConfig, TRecoveryPassword, TUserInfo, TUserAuthorization} from "./types";
+import {TApiConfig, TRecoveryPassword, TUserInfo, TUserAuthorization, TDataOrderId} from "./types";
 
 export class Api {
   _url: string;
@@ -19,12 +19,11 @@ export class Api {
     }
   }
 
-  postOrder(data: Array<string>) {
+  postOrder(data: TDataOrderId) {
     return fetch(`${this._url}/orders`, {
       method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      // @ts-ignore
+      headers: this._getHeaders(),
       body: JSON.stringify(data)
     })
       .then(res => {
@@ -55,7 +54,6 @@ export class Api {
   }
 
   recoveryPassword(data: TRecoveryPassword) {
-    console.log(data)
     return fetch(`${this._url}/password-reset/reset`, {
       method: "POST",
       headers: {
@@ -113,6 +111,7 @@ export class Api {
       .then(this._chekRes)
   }
 
+
   refreshToken = () => {
     return fetch(`${this._url}/auth/token`, {
       method: "POST",
@@ -130,7 +129,7 @@ export class Api {
       const res = await fetch(url, options);
       return await this._chekRes(res);
     } catch (err: any) {
-      if (err.message === "jwt expired") {
+      if (err === "Ошибка: 403") {
         const refreshData = await this.refreshToken(); //обновляем токен
         if (!refreshData.success) {
           await Promise.reject(refreshData);
@@ -154,7 +153,6 @@ export class Api {
   }
 
   patchUserInfo(data: TUserInfo) {
-    console.log(data)
     return this.fetchWithRefresh(`${this._url}/auth/user`,{
       method: "PATCH",
       headers: this._getHeaders(),

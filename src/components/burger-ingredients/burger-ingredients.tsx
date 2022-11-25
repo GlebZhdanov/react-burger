@@ -3,12 +3,12 @@ import styles from './burger-ingredients.module.css'
 import IngredientsList from "../burger-ingredients-list/ingredients-list";
 import {useInView} from 'react-intersection-observer';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import {useSelector} from "react-redux";
-import {burger} from "../../redux/ingredients/selectors";
+import {useSelector} from "../../redux/hooks";
 
 const BurgerIngredients: FC = () => {
-  const {data} = useSelector(burger)
 
+  const {data} = useSelector(state => state.burger);
+  
   const [ refBun, inViewBun ] = useInView( {
     "threshold": 0
   }) ;
@@ -32,17 +32,17 @@ const BurgerIngredients: FC = () => {
   const [current, setCurrent] = React.useState<string>('one');
 
   const filterDataMain= useMemo(() => {
-    // @ts-ignore
-    return data.data.filter((item) => item.type == 'main');
+    return data.filter((item) => item.type == 'main');
   },[data])
   const filterDataBun = useMemo(() => {
-    // @ts-ignore
-    return data.data.filter((item) => item.type == 'bun');
+
+    return data.filter((item) => item.type == 'bun');
   },[data])
   const filterDataSauce = useMemo(() => {
-    // @ts-ignore
-    return data.data.filter((item) => item.type == 'sauce');
+
+    return data.filter((item) => item.type == 'sauce');
   },[data])
+
 
   return (
     <section className={styles.ingredients}>
@@ -61,17 +61,14 @@ const BurgerIngredients: FC = () => {
       <div className={styles.scroll}>
         <IngredientsList
           ref={refBun}
-          // @ts-ignore
           data={filterDataBun}
           title={'Булки'}/>
         <IngredientsList
           ref={refSauce}
-          // @ts-ignore
           data={filterDataSauce}
           title={'Соусы'}/>
         <IngredientsList
           ref={refMain}
-          // @ts-ignore
           data={filterDataMain}
           title={'Начинки'}/>
       </div>

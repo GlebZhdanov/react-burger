@@ -1,0 +1,17 @@
+.scroll {
+  overflow: auto;
+  height: 90vh;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2F2F37;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}
+
+.link {
+  text-decoration: none;
+}

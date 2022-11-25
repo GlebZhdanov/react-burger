@@ -1,8 +1,7 @@
 import React, {FC, useMemo} from 'react';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredients.module.css'
-import {useSelector} from "react-redux";
-import {ingredientDetails} from "../../redux/ingredient-details/selectors";
+import {useSelector} from "../../redux/hooks";
 import {useDrag} from "react-dnd";
 import {TIngredientData} from "../../utils/types";
 
@@ -16,7 +15,7 @@ const Ingredients: FC<TIngredients> = ({item}) => {
     type: 'ingredients',
     item: item
   });
-  const {ingredient, bun} = useSelector(ingredientDetails);
+  const {ingredient, bun} = useSelector(state => state.ingredients);
 
   const ingredientCounter = useMemo(() => {
     let counter = 0;

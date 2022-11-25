@@ -2,10 +2,11 @@ import React, {useEffect, useState, Fragment, FC} from 'react';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './profile.module.css'
 import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
-import {useDispatch,useSelector} from "react-redux";
 import {loginOut, patchUser} from "../../redux/main/actions";
-import {main} from "../../redux/main/selectors";
 import {getCookie} from "../../utils/cookies";
+import {useDispatch, useSelector} from "../../redux/hooks";
+import {TUserInfo} from "../../utils/types";
+import ProfileOrder from "../profile-order/profile-order";
 
 const Profile: FC = () => {
 
@@ -15,11 +16,11 @@ const Profile: FC = () => {
 
   const dispatch = useDispatch();
 
-  const { name, email } = useSelector(main);
+  const { name, email } = useSelector(state => state.main);
 
   const accessToken = getCookie("accessToken");
 
-  const [dataUser, setDataUser] = useState({
+  const [dataUser, setDataUser] = useState<TUserInfo>({
     name: '',
     email: '',
     password: '',
@@ -32,7 +33,6 @@ const Profile: FC = () => {
   }, [accessToken]);
 
   useEffect(() => {
-    // @ts-ignore
     setDataUser({
         name: name,
         email: email,
@@ -49,13 +49,11 @@ const Profile: FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // @ts-ignore
     dispatch(patchUser(dataUser))
   }
 
   const resetForm = (e: React.FormEvent) => {
     e.preventDefault();
-    // @ts-ignore
     setDataUser({
       name: name,
       email: email,
@@ -63,7 +61,6 @@ const Profile: FC = () => {
   }
 
   const logOut = () => {
-    // @ts-ignore
     dispatch(loginOut());
   }
 
@@ -80,7 +77,7 @@ const Profile: FC = () => {
                   </Link>
                 </li>
                 <li className={`${styles.title} pb-3 pt-3`}>
-                  <Link className={location.pathname === '/profile/order' ? styles.active_link : styles.link} to='/profile/order'>
+                  <Link className={location.pathname === '/profile/order-page-feed' ? styles.active_link : styles.link} to='/profile/order'>
                     История заказов
                   </Link>
                 </li>
@@ -151,9 +148,7 @@ const Profile: FC = () => {
               </form>
             </Route>
             <Route path='/profile/order'>
-                <h1 className={styles.title}>
-                  История заказов
-                </h1>
+                <ProfileOrder/>
             </Route>
           </div>
         </Fragment>

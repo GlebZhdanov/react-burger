@@ -2,14 +2,13 @@ import React, {FC, useEffect} from 'react';
 import styles from './forgot-password.module.css'
 import {Button,Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link,useHistory} from "react-router-dom";
-import {useDispatch,useSelector} from "react-redux";
 import {recoveryPassword} from "../../redux/password/actions";
-import {password} from "../../redux/password/selectors";
+import {useDispatch, useSelector} from "../../redux/hooks";
 
 const ForgotPassword: FC = () => {
   const dispatch = useDispatch();
 
-  const {resetPassword} = useSelector(password)
+  const {resetPassword} = useSelector(state => state.password)
 
   const initialValues = {
     password: '',
@@ -37,7 +36,6 @@ const ForgotPassword: FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // @ts-ignore
     dispatch(recoveryPassword(values))
   }
 

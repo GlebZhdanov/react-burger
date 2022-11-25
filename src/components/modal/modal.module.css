@@ -27,7 +27,7 @@
 }
 
 .form {
-  height: 539px;
+  height: auto;
   width: 720px;
   flex-direction: column;
   box-sizing: border-box;

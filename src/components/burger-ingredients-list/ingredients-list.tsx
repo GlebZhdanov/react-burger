@@ -16,7 +16,7 @@ const IngredientsList = React.forwardRef<HTMLDivElement, TIngredientsList>(({dat
       <h2  className={styles.title}>{title}</h2>
       <div ref={ref} className={`${styles.container} pb-10`}>
           {data
-          .map((i) => (
+          .map((i: any) => (
             <Link className={styles.link}
               key={i._id}
             to={{

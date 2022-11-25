@@ -11,7 +11,7 @@ export type TIngredientData = {
   proteins: number;
   type: 'bun' | 'sauce' | 'main';
   __v: number;
-  _id: string;
+  _id: string | [];
   index: number;
 }
 
@@ -20,6 +20,16 @@ export type TApiConfig = {
 }
 
 export type TUserInfo = {
+  name?: string
+  email?: string,
+  password?: string,
+}
+
+export type TDataOrderId = {
+  "ingredients": Array<string>
+}
+
+export type TUserRegistration = {
   name: string,
   email: string,
   password: string,
