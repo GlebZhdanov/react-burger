@@ -128,7 +128,7 @@ export class Api {
     try {
       const res = await fetch(url, options);
       return await this._chekRes(res);
-    } catch (err: any) {
+    } catch (err) {
       if (err === "Ошибка: 403") {
         const refreshData = await this.refreshToken(); //обновляем токен
         if (!refreshData.success) {

@@ -7,8 +7,9 @@ const OrderStatus = () => {
 
   let readyOrder: number[] = [];
   let preparingOrder: number[] = [];
+  // @ts-ignore
 
-  feedOrders.forEach((order: any) => (order.status === 'done') ? readyOrder.push(order.number) : preparingOrder.push(order.number))
+  feedOrders.forEach((order) => (order.status === 'done') ? readyOrder.push(order.number) : preparingOrder.push(order.number))
 
   return (
     <div className={styles.main}>
@@ -16,7 +17,7 @@ const OrderStatus = () => {
         <ul className={styles.container}>
           <li className="text text_type_main-medium">Готовы:</li>
           <ul className={styles.container_number}>
-            {readyOrder.slice(0, 10).map((elem: number, index: number) => (
+            {readyOrder.slice(0, 10).map((elem, index) => (
               <li className={`text text_type_digits-default order_active ${styles.order_active}`} key={index}>{elem}</li>
             ))}
           </ul>
@@ -24,7 +25,7 @@ const OrderStatus = () => {
         <ul className={styles.container}>
           <li className="text text_type_main-medium">В работе:</li>
           <ul className={styles.container_number}>
-            {preparingOrder.slice(0, 10).map((elem: number, index: number) => (
+            {preparingOrder.slice(0, 10).map((elem, index) => (
               <li className="text text_type_digits-default" key={index}>{elem}</li>
             ))}
           </ul>

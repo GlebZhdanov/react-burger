@@ -8,7 +8,7 @@ import {
   ORDERS_WS_ERROR,
   ORDERS_WS_MESSAGE,
 } from '../types/action'
-import {TOrdersFeedPage} from "../types/data";
+import { TWsOrders} from "../types/data";
 
 export interface IFeedConnectAction {
   readonly type: typeof FEED_CONNECT;
@@ -24,7 +24,7 @@ export interface IFeedWsErrorAction {
 
 export interface IFeedWsMessageAction {
   readonly type: typeof FEED_WS_MESSAGE;
-  payload: TOrdersFeedPage,
+  payload: TWsOrders,
 }
 
 export interface IOrderConnectAction {
@@ -41,7 +41,7 @@ export interface IOrderWsErrorAction {
 
 export interface IOrderWsMessageAction {
   readonly type: typeof ORDERS_WS_MESSAGE;
-  payload: TOrdersFeedPage,
+  payload: TWsOrders,
 }
 
 
@@ -57,7 +57,7 @@ export const feedWsErrorAction = (): IFeedWsErrorAction => ({
   type:FEED_WS_ERROR,
 })
 
-export const feedWsMessageAction = (data: TOrdersFeedPage): IFeedWsMessageAction => ({
+export const feedWsMessageAction = (data: TWsOrders): IFeedWsMessageAction => ({
   type:FEED_WS_MESSAGE,
   payload: data
 })
@@ -74,7 +74,7 @@ export const orderWsErrorAction = (): IOrderWsErrorAction => ({
   type:ORDERS_WS_ERROR,
 })
 
-export const orderWsMessageAction = (data: TOrdersFeedPage): IOrderWsMessageAction => ({
+export const orderWsMessageAction = (data: TWsOrders): IOrderWsMessageAction => ({
   type:ORDERS_WS_MESSAGE,
   payload: data
 })

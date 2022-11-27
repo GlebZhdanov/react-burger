@@ -8,6 +8,7 @@ import {
   PASSWORD_RECOVERY_SUCCESS,
   PASSWORD_RECOVERY_ERROR,
   PASSWORD_RECORD} from "../types/action";
+import {TRecoveryPassword} from "../../utils/types";
 
 export interface IResetPasswordRequestAction {
   readonly type: typeof PASSWORD_RESET_REQUEST;
@@ -77,7 +78,7 @@ export const recordPasswordAction = (email: string): IRecoveryPasswordAction => 
 })
 
 
-export const resetPassword = (data: any): AppThunk => (dispatch: AppDispatch) => {
+export const resetPassword = (data: string): AppThunk => (dispatch: AppDispatch) => {
   dispatch(resetPasswordRequestAction())
   api.resetPassword(data)
   .then(() => {
@@ -88,7 +89,7 @@ export const resetPassword = (data: any): AppThunk => (dispatch: AppDispatch) =>
   })
 }
 
-export const recoveryPassword = (data: any): AppThunk => (dispatch: AppDispatch) => {
+export const recoveryPassword = (data: TRecoveryPassword): AppThunk => (dispatch: AppDispatch) => {
   dispatch(recoveryPasswordSuccessAction())
   api.recoveryPassword(data)
   .then(() => {
@@ -99,6 +100,6 @@ export const recoveryPassword = (data: any): AppThunk => (dispatch: AppDispatch)
   })
 }
 
-export const recordPassword = (data: any): AppThunk => (dispatch: AppDispatch) => {
+export const recordPassword = (data: string): AppThunk => (dispatch: AppDispatch) => {
   dispatch(recordPasswordAction(data))
 }

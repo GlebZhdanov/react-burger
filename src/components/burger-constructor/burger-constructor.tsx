@@ -33,9 +33,9 @@ const BurgerConstructor: FC = () => {
     }
   }, [ingredient, bun])
 
-  const ingredientId: any = ingredient.map((i) => i._id);
+  const ingredientId = ingredient.map((i) => i._id);
 
-  const receiveId = (bun: TIngredientData | null)=> {
+  const receiveId = (bun: TIngredientData | null) => {
     if(bun) {
       return [bun._id]
     }
@@ -43,6 +43,7 @@ const BurgerConstructor: FC = () => {
 
   const bunId = receiveId(bun);
 
+  // @ts-ignore
   const dataIngredientId = ingredientId.concat(bunId);
   const dataOrderId: TDataOrderId ={
     "ingredients": dataIngredientId

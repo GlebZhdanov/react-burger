@@ -15,8 +15,6 @@ const OrderPageProfile: FC = () => {
 
   const {userOrders} = useSelector(state => state.ws);
 
-  console.log(userOrders)
-
   useEffect(() => {
     dispatch({
       type: ORDERS_CONNECT,
@@ -32,7 +30,7 @@ const OrderPageProfile: FC = () => {
 
   let {id} = useParams<{id?: string}>();
 
-  let order = userOrders.filter((i: any) => i._id === id)[0];
+  let order = userOrders.filter((i) => i._id === id)[0];
 
   return (
     <>

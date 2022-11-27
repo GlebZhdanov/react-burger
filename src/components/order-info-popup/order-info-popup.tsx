@@ -3,7 +3,8 @@ import {useHistory,useParams} from "react-router-dom";
 import Modal from "../modal/modal";
 import OrderInfo from "../order-info/order-info";
 import {useSelector} from "../../redux/hooks";
-import {TIngredientData} from "../../utils/types";
+import Preloader from "../preloader/preloader";
+import {TOrder} from "../../redux/types/data";
 
 const OrderInfoPopup:FC = () => {
 
@@ -17,19 +18,26 @@ const OrderInfoPopup:FC = () => {
     history.goBack();
   }
 
-  let orderHandler = (feedOrders: Array<TIngredientData> | any[], userOrders: Array<TIngredientData> | any[]) => {
+  function orderHandler(feedOrders: Array<TOrder>, userOrders: Array<TOrder>){
     if(feedOrders.length !== 0) {
       return feedOrders.filter((i) => i._id === id)[0]
     } if (userOrders.length !== 0) {
       return userOrders.filter((i) => i._id === id)[0]
     }
+    return {}
   }
 
   let order = orderHandler(feedOrders, userOrders);
 
   return (
     <Modal popupClose={popupClose}>
-      <OrderInfo order={order}/>
+      {feedOrders.length === 0 && userOrders.length === 0
+        ?
+        <Preloader/>
+        :
+        // @ts-ignore
+        <OrderInfo order={order}/>
+      }
     </Modal>
   );
 };

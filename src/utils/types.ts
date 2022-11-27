@@ -5,14 +5,15 @@ export type TIngredientData = {
   image: string;
   image_large: string;
   image_mobile: string;
-  key: string;
+  key: string | number;
   name: string;
   price: number;
   proteins: number;
   type: 'bun' | 'sauce' | 'main';
   __v: number;
-  _id: string | [];
+  _id: string;
   index: number;
+  id: string;
 }
 
 export type TApiConfig = {

@@ -6,11 +6,12 @@ import Order from "../order/order";
 
 const OrderFeed: FC = () => {
   const { feedOrders } = useSelector((state) => state.ws);
+
   let location = useLocation();
 
   return (
     <div className={styles.scroll}>
-      {feedOrders.map((data: any, index: number) => (
+      {feedOrders.map((data, index) => (
         <Link
           className={styles.link}
           key={data._id}

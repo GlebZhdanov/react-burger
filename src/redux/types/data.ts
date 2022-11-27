@@ -53,32 +53,27 @@ export type TPasswordState = {
 
 export type TWsState = {
   wsConnected: boolean,
-  feedOrders: Array<TIngredientData>,
+  feedOrders: Array<TOrder>,
   total: number,
   totalToday: number,
-  userOrders: Array<TIngredientData>,
+  userOrders: Array<TOrder>,
 }
 
-export type TOrdersFeed = {
-  ingredients: Array<TIngredientData>,
-  _id: string | undefined;
-  status: string;
-  name: string;
-  createdAt: string | null;
-  updatedAt: string | null;
-  number: number;
+export type TWsOrders = {
+  orders: Array<TOrder>
+  success: boolean,
+  total: number,
+  totalToday: number,
 }
 
-export type TOrdersFeedPage = {
-  total: number | any;
-  totalToday: number | any;
-  orders: Array<TIngredientData> | any[] ;
+export type TOrder = {
+  createdAt: string,
   ingredients: Array<string>,
-  _id: string | undefined;
-  status: string;
   name: string;
-  createdAt: string | null;
-  updatedAt: string | null;
   number: number;
+  status: string;
+  updatedAt: string | null;
+  _id: string;
+  key: number | string;
 }
 

@@ -5,7 +5,7 @@ import {TIngredientData} from "../../utils/types";
 
 type TOrderIngredient = {
   burger: TIngredientData,
-  counter: any
+  counter: (burger: TIngredientData) => number,
 }
 
 const OrderIngredient: FC<TOrderIngredient> = ({burger, counter}) => {

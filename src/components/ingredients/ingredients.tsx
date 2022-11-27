@@ -19,7 +19,7 @@ const Ingredients: FC<TIngredients> = ({item}) => {
 
   const ingredientCounter = useMemo(() => {
     let counter = 0;
-    ingredient.forEach((ingredient: TIngredientData) => {
+    ingredient.forEach((ingredient) => {
       if (ingredient._id === item._id) counter++;
     });
     return counter;

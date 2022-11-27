@@ -1,5 +1,3 @@
-import {getCookie} from "./cookies";
-
 export const KEYCODE_ESC = 'Escape';
 
 export const SERVER_BASE_URL = 'wss://norma.nomoreparties.space/orders/all';

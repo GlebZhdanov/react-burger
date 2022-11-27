@@ -29,7 +29,7 @@ const OrderPageFeed: FC = () => {
 
   let {id} = useParams<{id?: string}>();
 
-  let order = feedOrders.filter((i: any) => i._id === id)[0];
+  let order = feedOrders.filter((i) => i._id === id)[0];
 
   return (
     <>

@@ -7,7 +7,7 @@ import {deleteIngredient,sortIngredient} from "../../redux/ingredient-details/ac
 import {TIngredientData} from "../../utils/types";
 
 type TBurgerConstructorItem = {
-  id: string,
+  id: string | number,
   index: number,
   data: TIngredientData,
 }

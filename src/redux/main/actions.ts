@@ -52,7 +52,7 @@ export interface IGetUserRequestAction {
 
 export interface IGetUserSuccessAction {
   readonly type: typeof USER_SUCCESS;
-  payload: any
+  payload: TUserData
 }
 
 export interface IGetUserFailedAction {

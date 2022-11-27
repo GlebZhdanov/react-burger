@@ -3,16 +3,16 @@ import styles from './order.module.css'
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useSelector} from "../../redux/hooks";
 import {Route} from "react-router-dom";
-import {TOrdersFeed} from "../../redux/types/data";
 import {TIngredientData} from "../../utils/types";
 import {cleanTheDate} from "../../utils/constain";
+import {TOrder} from "../../redux/types/data";
 
-export type TOrder = {
-  order: TOrdersFeed;
-};
+type TOrders = {
+  order: TOrder,
+  key: number
+}
 
-const Order: FC<TOrder> = ({order}) => {
-
+const Order: FC<TOrders> = ({order}) => {
   const {data} = useSelector((state) => state.burger);
 
   const {number, name, createdAt} = order;
@@ -20,7 +20,6 @@ const Order: FC<TOrder> = ({order}) => {
   const timeOrder = cleanTheDate(createdAt);
 
   const ingredientsInfo = order.ingredients.reduce((acc, item) => {
-    // @ts-ignore
     const ingredient = data.find((ing) => ing._id === item);
     if(ingredient) {
       // @ts-ignore
@@ -29,7 +28,8 @@ const Order: FC<TOrder> = ({order}) => {
     return acc;
   },[]);
 
-  const priceDataOrder = ingredientsInfo.reduce((sum: number, i: any) => i.type === "bun" ? sum + 2 * i.price : sum + i.price, 0);
+
+  const priceDataOrder = ingredientsInfo.reduce((sum, i: TIngredientData) => i.type === "bun" ? sum + 2 * i.price : sum + i.price, 0);
 
   const orderArrayInfo: Array<TIngredientData> = ingredientsInfo.slice(0, 6);
 

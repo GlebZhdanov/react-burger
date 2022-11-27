@@ -4,27 +4,29 @@ import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {cleanTheDate} from "../../utils/constain";
 import {useSelector} from "../../redux/hooks";
 import OrderIngredient from "../order-ingredients/order-ingredients";
-import {TOrdersFeed} from "../../redux/types/data";
 import {TIngredientData} from "../../utils/types";
+import {TOrder} from "../../redux/types/data";
 
 type TOrderInfo = {
-  order: TOrdersFeed,
+  order: TOrder,
 }
 
-const OrderInfo:FC<TOrderInfo> = ({order}) => {
+const OrderInfo: FC<TOrderInfo> = ({order}) => {
 
   const {data} = useSelector((state) => state.burger);
 
   const timeOrder = cleanTheDate(order.createdAt);
 
-  const ingredientsInfo = order.ingredients.reduce((acc, item: TIngredientData) => {
-    const ingredient = data.find((i: any) => i._id === item);
+  const ingredientsInfo = order.ingredients.reduce((acc, item) => {
+    const ingredient = data.find((i) => i._id === item);
     if(ingredient) {
       // @ts-ignore
       acc.push(ingredient);
     }
     return acc;
   },[]);
+
+
 
   const filterIngredientsInfo = ingredientsInfo.filter((elem, pos) => {
     return ingredientsInfo.indexOf(elem) === pos;
@@ -53,7 +55,7 @@ const OrderInfo:FC<TOrderInfo> = ({order}) => {
       </p>
       <div className={`${styles.content} custom-scroll`}>
         {filterIngredientsInfo
-        .map((elem: TIngredientData, index) => (
+          .map((elem, index) => (
           <OrderIngredient counter={counter} burger={elem} key={index}/>
         ))}
       </div>

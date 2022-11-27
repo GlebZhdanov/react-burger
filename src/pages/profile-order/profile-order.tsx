@@ -32,7 +32,7 @@ const ProfileOrder = () => {
 
   return (
       <div className={styles.scroll}>
-        {userOrders.map((data: any, index: number) => (
+        {userOrders.map((data, index) => (
           <Link
             className={styles.link}
             key={data._id}
