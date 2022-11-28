@@ -1,0 +1,22 @@
+.section {
+  padding-top: 40px;
+}
+
+.title {
+  font-family: 'Jet Brains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  margin: 0;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+}
+
+.link {
+  text-decoration: none;
+}

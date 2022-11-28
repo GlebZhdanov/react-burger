@@ -1,0 +1,49 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 620px;
+  height: auto;
+  position: center;
+  margin: 120px auto auto auto;
+}
+
+.number {
+  margin-top: -100px;
+  text-align: center;
+}
+
+.name {
+  margin-top: 40px;
+  text-align: start;
+}
+
+.status {
+  color: #00CCCC;
+  padding-bottom: 60px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 336px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.period {
+  text-align: start;
+  width: 556px;
+}
+
+.sale {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}

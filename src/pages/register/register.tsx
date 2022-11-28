@@ -2,16 +2,16 @@ import React, {FC, useEffect} from 'react';
 import {EmailInput, PasswordInput, Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './register.module.css'
 import {Link, useHistory} from "react-router-dom";
-import {useDispatch,useSelector} from "react-redux";
 import {registrationUser} from "../../redux/main/actions";
-import {main} from "../../redux/main/selectors";
+import {useDispatch, useSelector} from "../../redux/hooks";
+import { TUserRegistration} from "../../utils/types";
 
 const Register: FC = () => {
   const history = useHistory()
 
   const dispatch = useDispatch();
 
-  const {registrationSuccess, registrationRequest} = useSelector(main);
+  const {registrationSuccess} = useSelector(state => state.main);
 
   const initialValues = {
     name: '',
@@ -19,7 +19,7 @@ const Register: FC = () => {
     password: ''
   }
 
-  const [values, setValues] = React.useState(initialValues);
+  const [values, setValues] = React.useState<TUserRegistration>(initialValues);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -37,7 +37,6 @@ const Register: FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // @ts-ignore
     dispatch(registrationUser(values));
   }
 

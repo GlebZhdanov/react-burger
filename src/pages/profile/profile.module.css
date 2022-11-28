@@ -1,13 +1,14 @@
 .content {
-  margin-top: 170px;
+  /*width: 1280px;*/
+  padding-top: 40px;
   display: grid;
-  grid-template-columns: 320px 320px;
+  grid-template-columns: 320px 1fr;
   grid-template-rows: auto;
   justify-content: center;
 }
 
 .nav {
-
+  padding-top: 80px;
 }
 
 .container {
@@ -47,7 +48,7 @@
 }
 
 .form {
-
+  padding-top: 80px;
 }
 
 .container_button {

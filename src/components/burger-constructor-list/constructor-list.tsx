@@ -4,14 +4,14 @@ import styles from "./constructor-list.module.css";
 import { v4 as uuid } from "uuid";
 import {useDrop} from "react-dnd";
 import {addBun,addIngredient} from "../../redux/ingredient-details/actions";
-import {useDispatch} from "react-redux";
+import {useDispatch} from "../../redux/hooks";
 import BurgerConstructorItem from "../burger-constructor-item/burger-constructor-item";
 import PlugBun from "../plug-bun/plug-bun";
 import PlugIngredients from "../plug-ingredients/plug-Ingredients";
 import {TIngredientData} from "../../utils/types";
 
 type TConstructorList = {
-  bun: TIngredientData,
+  bun: TIngredientData | null,
   ingredient:Array<TIngredientData>,
 }
 

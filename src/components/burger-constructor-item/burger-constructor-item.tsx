@@ -2,13 +2,12 @@ import React, {FC, useRef} from 'react';
 import styles from "../burger-constructor-list/constructor-list.module.css";
 import {ConstructorElement,DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {DropTargetMonitor, useDrag, useDrop, XYCoord} from "react-dnd";
-import {useDispatch,useSelector} from "react-redux";
-import {ingredientDetails} from "../../redux/ingredient-details/selectors";
+import {useDispatch, useSelector} from "../../redux/hooks";
 import {deleteIngredient,sortIngredient} from "../../redux/ingredient-details/actions";
 import {TIngredientData} from "../../utils/types";
 
 type TBurgerConstructorItem = {
-  id: string,
+  id: string | number,
   index: number,
   data: TIngredientData,
 }
@@ -17,7 +16,7 @@ const BurgerConstructorItem: FC<TBurgerConstructorItem> = ({id, index, data}) =>
 
   const ref = useRef<HTMLUListElement>(null);
 
-  const {ingredient} = useSelector(ingredientDetails)
+  const {ingredient} = useSelector(state => state.ingredients)
 
   const dispatch = useDispatch()
 
@@ -25,7 +24,6 @@ const BurgerConstructorItem: FC<TBurgerConstructorItem> = ({id, index, data}) =>
     const newIngredients = [...ingredient];
     newIngredients.splice(hoverIndex,0,newIngredients.splice(dragIndex, 1)[0]
     );
-    // @ts-ignore
     dispatch(sortIngredient(newIngredients))
   }
 
@@ -75,7 +73,6 @@ const BurgerConstructorItem: FC<TBurgerConstructorItem> = ({id, index, data}) =>
   dragRef(dropRef(ref))
 
   const handleDelete = () => {
-    // @ts-ignore
     dispatch(deleteIngredient(data))
   }
 

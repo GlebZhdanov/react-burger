@@ -2,12 +2,12 @@ import React, {FC, useEffect} from 'react';
 import {EmailInput, PasswordInput,Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './login.module.css'
 import {Link,useHistory,useLocation} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {authorizationUser, USER_ERROR} from "../../redux/main/actions";
-import {main} from "../../redux/main/selectors";
+import {authorizationUser} from "../../redux/main/actions";
+import {useDispatch, useSelector} from "../../redux/hooks";
 
 const Login: FC = () => {
-  const {authorizationSuccess} = useSelector(main);
+
+  const {authorizationSuccess} = useSelector(state => state.main);
 
   const history = useHistory();
   const location = useLocation();
@@ -29,9 +29,7 @@ const Login: FC = () => {
 
   const handleSubmit = (e: React.FormEvent)  => {
     e.preventDefault();
-    // @ts-ignore
     dispatch(authorizationUser(values));
-    // @ts-ignore
   }
 
   useEffect(() => {
