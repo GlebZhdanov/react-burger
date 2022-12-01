@@ -14,7 +14,7 @@ type TIngredientDetailsState = {
   ingredientInfo: null | TIngredientData,
 }
 
-const initialState: TIngredientDetailsState = {
+export const initialState: TIngredientDetailsState = {
   ingredient: [],
   bun: null,
   ingredientInfo: null,

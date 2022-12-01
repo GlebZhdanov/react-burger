@@ -50,7 +50,7 @@ export const loadOrderDeleteAction = () : ILoadOrderDeleteAction => ({
 
 export const loadOrder = (id: TDataOrderId): AppThunk => (dispatch: AppDispatch) => {
   dispatch(loadOrderRequestAction())
-  api.postOrder(id)
+  return api.postOrder(id)
   .then((res) => {
     dispatch(loadOrderSuccessAction(res.order.number))
   })

@@ -167,12 +167,11 @@ export const loginOutFailedAction = () : ILoginOutFailedAction => ({
 
 export const registrationUser = (data: TUserRegistration): AppThunk => (dispatch: AppDispatch) => {
   dispatch(registrationUserRequestAction())
-  api.registration(data)
+  return api.registration(data)
   .then((res) => {
     setCookie('accessToken', res.accessToken);
     localStorage.setItem('refreshToken', res.refreshToken);
     dispatch(registrationUserSuccessAction())
-    window.location.reload()
   })
   .catch(() => {
     dispatch(registrationUserFailedAction())
@@ -181,7 +180,7 @@ export const registrationUser = (data: TUserRegistration): AppThunk => (dispatch
 
 export const authorizationUser = (data: TUserAuthorization): AppThunk => (dispatch: AppDispatch) => {
   dispatch(authorizationUserRequestAction());
-  api.authorization(data)
+  return api.authorization(data)
   .then((res) => {
     setCookie('accessToken', res.accessToken);
     localStorage.setItem('refreshToken', res.refreshToken);
@@ -194,7 +193,7 @@ export const authorizationUser = (data: TUserAuthorization): AppThunk => (dispat
 
 export const getUser = (): AppThunk => (dispatch: AppDispatch) => {
   dispatch(getUserRequestAction())
-  api.getUserInfo()
+  return api.getUserInfo()
   .then((res) => {
     dispatch(getUserSuccessAction(res))
   })
@@ -205,7 +204,7 @@ export const getUser = (): AppThunk => (dispatch: AppDispatch) => {
 
 export const patchUser = (data: TUserInfo): AppThunk => (dispatch: AppDispatch) => {
   dispatch(patchUserRequestAction())
-  api.patchUserInfo(data)
+  return api.patchUserInfo(data)
   .then((res) => {
     dispatch(patchUserSuccessAction(res))
   })
@@ -216,7 +215,7 @@ export const patchUser = (data: TUserInfo): AppThunk => (dispatch: AppDispatch) 
 
 export const loginOut = (): AppThunk => (dispatch: AppDispatch) => {
   dispatch(loginOutRequestAction())
-  api.logOut()
+  return api.logOut()
   .then(() => {
     localStorage.clear();
     deleteCookie('accessToken')

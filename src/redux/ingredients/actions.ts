@@ -36,15 +36,16 @@ export const loadIngredientsSuccessAction = (ingredient: Array<TIngredientData> 
 
 export const loadIngredientsFailedAction = () : ILoadIngredientsFailedAction => ({
   type: INGREDIENTS_DATA_ERROR,
-})
+}
+)
 
 export const loadIngredients = (): AppThunk => (dispatch: AppDispatch) => {
   dispatch(loadIngredientRequestAction())
-  api.getIngredients()
+  return api.getIngredients()
   .then((res) => {
     dispatch(loadIngredientsSuccessAction(res.data))
   })
-  .catch(() => {
-    dispatch(loadIngredientsFailedAction())
+  .catch((err) => {
+    dispatch(loadIngredientsFailedAction());
   })
 }

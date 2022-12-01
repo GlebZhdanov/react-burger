@@ -20,7 +20,7 @@ import {
 } from "./types/action";
 import {rootReducer} from "./reducer";
 
-const ordersWsAction = {
+export const ordersWsAction = {
   wsConnect: ORDERS_CONNECT,
   wsDisconnect: ORDERS_DISCONNECT,
   wsConnecting: ORDERS_WS_CONNECT,
@@ -30,7 +30,7 @@ const ordersWsAction = {
   onMessage: ORDERS_WS_MESSAGE
 }
 
-const feedWsAction = {
+export const feedWsAction = {
   wsConnect: FEED_CONNECT,
   wsDisconnect: FEED_DISCONNECT,
   wsConnecting: FEED_WS_CONNECT,

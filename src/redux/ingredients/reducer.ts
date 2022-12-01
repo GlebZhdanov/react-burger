@@ -6,7 +6,7 @@ import {
 } from "../types/action";
 import {TIngredientState} from "../types/data";
 
-const initialState: TIngredientState = {
+export const initialState: TIngredientState = {
   data: [],
   dataLoading: false,
   dataError: null

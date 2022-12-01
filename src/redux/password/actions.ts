@@ -80,7 +80,7 @@ export const recordPasswordAction = (email: string): IRecoveryPasswordAction => 
 
 export const resetPassword = (data: string): AppThunk => (dispatch: AppDispatch) => {
   dispatch(resetPasswordRequestAction())
-  api.resetPassword(data)
+  return api.resetPassword(data)
   .then(() => {
     dispatch(resetPasswordSuccessAction())
   })
@@ -91,7 +91,7 @@ export const resetPassword = (data: string): AppThunk => (dispatch: AppDispatch)
 
 export const recoveryPassword = (data: TRecoveryPassword): AppThunk => (dispatch: AppDispatch) => {
   dispatch(recoveryPasswordSuccessAction())
-  api.recoveryPassword(data)
+  return api.recoveryPassword(data)
   .then(() => {
     dispatch(recoveryPasswordRequestAction())
   })

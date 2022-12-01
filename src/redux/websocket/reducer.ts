@@ -11,7 +11,7 @@ import {
 import {TWsAction} from "./actions";
 import {TWsState} from "../types/data";
 
-const initialState: TWsState = {
+export const initialState: TWsState = {
   wsConnected: false,
   feedOrders: [],
   total: 0,
