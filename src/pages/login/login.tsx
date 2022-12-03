@@ -42,14 +42,14 @@ const Login: FC = () => {
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <ul className={styles.ul}>
-          <li className={`${styles.title} pb-6`}>
+          <li id='login-text' className={`${styles.title} pb-6`}>
             Вход
           </li>
           <li className={'pb-6'}>
-            <EmailInput onChange={handleInputChange} value={values.email} name={'email'}/>
+            <EmailInput id='email-input' onChange={handleInputChange} value={values.email} name={'email'}/>
           </li>
           <li className={'pb-6'}>
-            <PasswordInput onChange={handleInputChange} value={values.password} name={'password'}/>
+            <PasswordInput id='password-input' onChange={handleInputChange} value={values.password} name={'password'}/>
           </li>
           <li className={'pb-20'}>
             <Button htmlType='submit' type="primary" size="medium">

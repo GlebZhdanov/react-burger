@@ -70,7 +70,7 @@ const BurgerConstructor: FC = () => {
           <p className={styles.count}>{totalPrice}</p>
           <img className={styles.image} src={image} />
         </div>
-        <Button htmlType='button' type="primary" size="large"
+        <Button id='button-order' htmlType='button' type="primary" size="large"
         onClick={clickButtonPlaceOrder}>
           Оформить заказ
         </Button>

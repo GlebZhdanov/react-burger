@@ -37,7 +37,7 @@ const Ingredients: FC<TIngredients> = ({item}) => {
 
 
   return (
-    <ul ref={dragRef} className={`${styles.container} pl-4 pt-6 pb-6`}>
+    <ul ref={dragRef} id='ingredients-modal' className={`${styles.container} pl-4 pt-6 pb-6`}>
       <li>
         <img className={styles.image} src={item.image}/>
       </li>

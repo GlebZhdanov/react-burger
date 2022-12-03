@@ -39,7 +39,7 @@ const AppHeader: FC = () => {
               <li>
                 <ProfileIcon type="primary"/>
               </li>
-              <li className={`ml-1 mb-1`}>
+              <li id='user' className={`ml-1 mb-1`}>
                 {accessToken
                   ?
                   name

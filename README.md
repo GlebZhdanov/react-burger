@@ -31,6 +31,8 @@
 
 ##### `npm run build` – production сборка проекта
 
+##### `npm run test` – выполнить тесты
+
 ### Ссылка на проект: [React-burger](https://glebzhdanov.github.io/react-burger/)
 
 
