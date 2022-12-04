@@ -28,7 +28,7 @@
 
 ##### `npm run test` – выполнить тесты
 
-### Ссылка на проект: [React-burger](https://glebzhdanov.github.io/)
+### Ссылка на проект: [React-burger](https://glebzhdanov.github.io/react-burger/)
 
 
 

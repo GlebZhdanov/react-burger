@@ -2,7 +2,7 @@
   "name": "react-burger",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://glebzhdanov.github.io/react-burger/",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.20.1",
     "@testing-library/user-event": "^13.5.0",
