@@ -1,6 +1,6 @@
 describe("burger-constructor",  () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000");
+    cy.visit("");
   });
 
   it("open popup ingredient",() => {

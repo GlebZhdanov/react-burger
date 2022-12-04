@@ -41,5 +41,6 @@ export const dataWs = {
   totalToday: 131341
 }
 
+export const buttonOrderTest = '#button-order'
 
 
