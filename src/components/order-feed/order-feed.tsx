@@ -6,7 +6,6 @@ import Order from "../order/order";
 
 const OrderFeed: FC = () => {
   const { feedOrders } = useSelector((state) => state.ws);
-
   let location = useLocation();
 
   return (

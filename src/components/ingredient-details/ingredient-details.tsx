@@ -10,7 +10,7 @@ const IngredientDetails: FC<TIngredientDetails> = ({dataIngredients}) => {
 
   return (
       <>
-        <li className={`${styles.title} ml-10 mt-10`}>
+        <li id='title-ingredient-modal' className={`${styles.title} ml-10 mt-10`}>
           Детали ингредиента
         </li>
         <img className={styles.image} src={dataIngredients.image}/>

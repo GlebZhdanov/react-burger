@@ -8,7 +8,7 @@ import {useSelector} from "../../redux/hooks";
 const BurgerIngredients: FC = () => {
 
   const {data} = useSelector(state => state.burger);
-  
+
   const [ refBun, inViewBun ] = useInView( {
     "threshold": 0
   }) ;
@@ -46,7 +46,7 @@ const BurgerIngredients: FC = () => {
 
   return (
     <section className={styles.ingredients}>
-      <h1 className={styles.title}>Соберите бургер</h1>
+      <h1 id='title-burger-constructor' className={styles.title}>Соберите бургер</h1>
       <div className={`${styles.tab} pt-5 pb-10`}>
         <Tab value="one" active={current === 'one'} onClick={() => setCurrent('one')}>
           Булки

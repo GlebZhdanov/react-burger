@@ -16,7 +16,7 @@ const OrderDetails: FC = () => {
         </ul>
         :
         <ul className={styles.form}>
-          <li className={`${styles.text} pt-30`}>
+          <li id='order-number' className={`${styles.text} pt-30`}>
             {orderNumber}
           </li>
           <li className={`${styles.title} pt-8`}>

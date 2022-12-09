@@ -28,7 +28,7 @@ const Modal: React.FC<TModal> = ({children, popupClose}) => {
     <ModalOverlay popupClose={popupClose}>
       <div className={styles.popup} >
         <ul className={styles.form} onClick={(event) => event.stopPropagation()}>
-          <button type="button" className={styles.close} onClick={popupClose}/>
+          <button id="button-modal-close" type="button" className={styles.close} onClick={popupClose}/>
           {children}
         </ul>
       </div>

@@ -18,7 +18,7 @@ import {
 import {TMainState} from "../types/data";
 import {TMainAction} from "./actions";
 
-const initialState: TMainState = {
+export const initialState: TMainState = {
   registrationRequest: false,
   registrationSuccess: false,
   registrationError: false,

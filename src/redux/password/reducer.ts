@@ -9,7 +9,7 @@ import {
 import {TPasswordAction} from "./actions";
 import {TPasswordState} from "../types/data";
 
-const initialState: TPasswordState = {
+export const initialState: TPasswordState = {
   resetRequest : false,
   resetSuccess: false,
   resetError: false,
